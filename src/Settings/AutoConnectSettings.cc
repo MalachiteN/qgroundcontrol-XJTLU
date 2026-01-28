@@ -106,3 +106,7 @@ DECLARE_SETTINGSFACT_NO_FUNC(AutoConnectSettings, autoConnectZeroConf)
     }
     return _autoConnectZeroConfFact;
 }
+
+DECLARE_SETTINGSFACT(AutoConnectSettings, groundStationName)
+DECLARE_SETTINGSFACT(AutoConnectSettings, groundStationStatusHost)
+DECLARE_SETTINGSFACT(AutoConnectSettings, groundStationStatusPort)

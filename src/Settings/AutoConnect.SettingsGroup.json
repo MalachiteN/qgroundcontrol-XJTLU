@@ -82,6 +82,27 @@
     "shortDesc": "Udp port to receive NMEA streams",
     "type":             "uint32",
     "default":     14401
+},
+{
+    "name":             "groundStationName",
+    "shortDesc": "地面站名称",
+    "longDesc":  "地面站名称，用于自动创建TCP连接",
+    "type":             "string",
+    "default":     ""
+},
+{
+    "name":             "groundStationStatusHost",
+    "shortDesc": "Ground Station Server Host",
+    "longDesc":  "IP address or hostname of the ground station server",
+    "type":             "string",
+    "default":     "111.229.242.175"
+},
+{
+    "name":             "groundStationStatusPort",
+    "shortDesc": "Ground Station Server Port",
+    "longDesc":  "Port of the ground station server",
+    "type":             "uint32",
+    "default":     11451
 }
 ]
 }

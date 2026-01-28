@@ -100,6 +100,34 @@ SettingsPage {
     }
 
     SettingsGroupLayout {
+        heading: qsTr("地面站连接")
+
+        LabelledFactTextField {
+            label: qsTr("地面站名称")
+            fact: _autoConnectSettings.groundStationName
+        }
+
+        LabelledFactTextField {
+            label: qsTr("服务器地址")
+            fact: _autoConnectSettings.groundStationStatusHost
+        }
+
+        LabelledFactTextField {
+            label: qsTr("服务器端口")
+            fact: _autoConnectSettings.groundStationStatusPort
+        }
+
+        LabelledButton {
+            label: qsTr("确认")
+            buttonText: qsTr("确认")
+            onClicked: {
+                // 设置已通过Fact自动保存，立即触发创建连接
+                _linkManager.createGroundStationTcpLink()
+            }
+        }
+    }
+
+    SettingsGroupLayout {
         heading: qsTr("Links")
 
         Repeater {
@@ -223,7 +251,7 @@ SettingsPage {
                     QGCTextField {
                         id:                 nameField
                         Layout.fillWidth:   true
-                        text:               editingConfig.name
+                        text:               editingConfig ? editingConfig.name : ""
                         placeholderText:    qsTr("Enter name")
                     }
                 }
@@ -231,25 +259,37 @@ SettingsPage {
                 QGCCheckBoxSlider {
                     Layout.fillWidth:   true
                     text:               qsTr("Automatically Connect on Start")
-                    checked:            editingConfig.autoConnect
-                    onCheckedChanged:   editingConfig.autoConnect = checked
+                    checked:            editingConfig ? editingConfig.autoConnect : false
+                    onCheckedChanged:   {
+                        if (editingConfig) {
+                            editingConfig.autoConnect = checked
+                        }
+                    }
                 }
 
                 QGCCheckBoxSlider {
                     Layout.fillWidth:   true
                     text:               qsTr("High Latency")
-                    checked:            editingConfig.highLatency
-                    onCheckedChanged:   editingConfig.highLatency = checked
+                    checked:            editingConfig ? editingConfig.highLatency : false
+                    onCheckedChanged:   {
+                        if (editingConfig) {
+                            editingConfig.highLatency = checked
+                        }
+                    }
                 }
 
                 LabelledComboBox {
                     label:                  qsTr("Type")
-                    enabled:                originalConfig == null
+                    enabled:                originalConfig == null && editingConfig != null
                     model:                  _linkManager.linkTypeStrings
-                    Component.onCompleted:  comboBox.currentIndex = editingConfig.linkType
+                    Component.onCompleted:  {
+                        if (editingConfig) {
+                            comboBox.currentIndex = editingConfig.linkType
+                        }
+                    }
 
                     onActivated: (index) => {
-                        if (index !== editingConfig.linkType) {
+                        if (editingConfig && index !== editingConfig.linkType) {
                             // Save current name
                             var name = nameField.text
                             // Create new link configuration
@@ -260,7 +300,7 @@ SettingsPage {
 
                 Loader {
                     id:     linkSettingsLoader
-                    source: subEditConfig.settingsURL
+                    source: subEditConfig ? subEditConfig.settingsURL : ""
 
                     property var subEditConfig:         editingConfig
                     property int _firstColumnWidth:     ScreenTools.defaultFontPixelWidth * 12

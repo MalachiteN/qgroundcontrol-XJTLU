@@ -22,8 +22,11 @@ class AutoConnectSettings;
 class LogReplayLink;
 class MAVLinkProtocol;
 class QmlObjectListModel;
+class QNetworkAccessManager;
+class QNetworkReply;
 class QTimer;
 class SerialLink;
+class TCPConfiguration;
 class UDPConfiguration;
 class UdpIODevice;
 
@@ -107,6 +110,8 @@ public:
     SharedLinkConfigurationPtr addConfiguration(LinkConfiguration *config);
 
     void startAutoConnectedLinks();
+    /// Manually trigger ground station TCP link creation (called from UI)
+    Q_INVOKABLE void createGroundStationTcpLink();
 
     static bool isBluetoothAvailable();
 
@@ -131,6 +136,9 @@ private:
     void _addUDPAutoConnectLink();
     void _addMAVLinkForwardingLink();
     void _createDynamicForwardLink(const char *linkName, const QString &hostName);
+    void _addGroundStationTcpLink();
+    void _requestGroundStationPort();
+    void _onGroundStationPortReply();
 #ifdef QGC_ZEROCONF_ENABLED
     void _addZeroConfAutoConnectLink();
 #endif
@@ -138,6 +146,9 @@ private:
     QTimer *_portListTimer = nullptr;
     QmlObjectListModel *_qmlConfigurations = nullptr;
     AutoConnectSettings *_autoConnectSettings = nullptr;
+    QNetworkAccessManager *_networkManager = nullptr;
+    QNetworkReply *_groundStationPortReply = nullptr;
+    SharedLinkConfigurationPtr _groundStationTcpConfig = nullptr;
 
     bool _configUpdateSuspended = false;            ///< true: stop updating configuration list
     bool _configurationsLoaded = false;             ///< true: Link configurations have been loaded

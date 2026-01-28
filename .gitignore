@@ -31,6 +31,7 @@ cmake-build-*/
 out/
 CMakeFiles
 CMakeLists.txt.user*
+CMakeLists.txt.qtds
 CMakeUserPresets.json
 compile_commands.json
 cpm_modules
@@ -115,6 +116,7 @@ ios/iOSForAppStore-Info.plist
 
 # Android
 android/local.properties
+android/.gradle/
 *.class
 
 # Linux

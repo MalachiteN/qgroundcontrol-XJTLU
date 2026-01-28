@@ -41,7 +41,13 @@
 #endif
 
 #include <QtCore/QApplicationStatic>
+#include <QtCore/QEventLoop>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
 #include <QtCore/QTimer>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtNetwork/QNetworkRequest>
 
 QGC_LOGGING_CATEGORY(LinkManagerLog, "Comms.LinkManager")
 QGC_LOGGING_CATEGORY(LinkManagerVerboseLog, "Comms.LinkManager:verbose")
@@ -52,6 +58,7 @@ LinkManager::LinkManager(QObject *parent)
     : QObject(parent)
     , _portListTimer(new QTimer(this))
     , _qmlConfigurations(new QmlObjectListModel(this))
+    , _networkManager(new QNetworkAccessManager(this))
 #ifndef QGC_NO_SERIAL_LINK
     , _nmeaSocket(new UdpIODevice(this))
 #endif
@@ -312,6 +319,11 @@ void LinkManager::saveLinkConfigurationList()
             continue;
         }
 
+        // 跳过地面站TCP连接，因为它每次启动时都会重新从服务器获取端口号
+        if (linkConfig->name().startsWith(tr("地面站连接"))) {
+            continue;
+        }
+
         const QString root = LinkConfiguration::settingsRoot() + QStringLiteral("/Link%1").arg(trueCount++);
         settings.setValue(root + "/name", linkConfig->name());
         settings.setValue(root + "/type", linkConfig->type());
@@ -563,9 +575,164 @@ void LinkManager::_updateAutoConnectLinks()
 #endif
 }
 
+void LinkManager::_addGroundStationTcpLink()
+{
+    qCDebug(LinkManagerLog) << "_addGroundStationTcpLink called";
+    const QString groundStationName = _autoConnectSettings->groundStationName()->rawValue().toString().trimmed();
+    qCDebug(LinkManagerLog) << "Ground station name:" << groundStationName;
+    
+    if (groundStationName.isEmpty()) {
+        qCDebug(LinkManagerLog) << "Ground station name is empty";
+        // 如果地面站名称为空，但之前有连接，应该删除
+        if (_groundStationTcpConfig) {
+            LinkInterface* const link = _groundStationTcpConfig->link();
+            if (link) {
+                link->disconnect();
+            }
+            _removeConfiguration(_groundStationTcpConfig.get());
+            _groundStationTcpConfig.reset();
+        }
+        return;
+    }
+
+    // 检查是否已经存在地面站TCP连接配置
+    if (_groundStationTcpConfig) {
+        // 检查配置是否还在列表中
+        bool found = false;
+        for (const SharedLinkConfigurationPtr &config : _rgLinkConfigs) {
+            if (config.get() == _groundStationTcpConfig.get()) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            qCDebug(LinkManagerLog) << "Ground station TCP config already exists";
+            return; // 已经存在
+        } else {
+            // 配置已被删除，重置指针
+            qCDebug(LinkManagerLog) << "Ground station TCP config was removed, resetting";
+            _groundStationTcpConfig.reset();
+        }
+    }
+
+    // 请求端口号
+    qCDebug(LinkManagerLog) << "Requesting ground station port";
+    _requestGroundStationPort();
+}
+
+void LinkManager::_requestGroundStationPort()
+{
+    const QString groundStationName = _autoConnectSettings->groundStationName()->rawValue().toString().trimmed();
+    if (groundStationName.isEmpty()) {
+        qCDebug(LinkManagerLog) << "Ground station name is empty, skipping port request";
+        return;
+    }
+
+    QString host = _autoConnectSettings->groundStationStatusHost()->rawValue().toString();
+    quint32 port = _autoConnectSettings->groundStationStatusPort()->rawValue().toUInt();
+    const QUrl url(QString("http://%1:%2/connect?name=%3").arg(host).arg(port).arg(QString::fromUtf8(QUrl::toPercentEncoding(groundStationName))));
+    QNetworkRequest request(url);
+    qCDebug(LinkManagerLog) << "Requesting ground station port for:" << groundStationName << "URL:" << url.toString();
+
+    if (_groundStationPortReply) {
+        _groundStationPortReply->deleteLater();
+    }
+
+    _groundStationPortReply = _networkManager->get(request);
+    (void) connect(_groundStationPortReply, &QNetworkReply::finished, this, &LinkManager::_onGroundStationPortReply);
+    (void) connect(_groundStationPortReply, &QNetworkReply::errorOccurred, this, [this](QNetworkReply::NetworkError error) {
+        qCWarning(LinkManagerLog) << "Network error occurred while requesting ground station port:" << error;
+    });
+}
+
+void LinkManager::_onGroundStationPortReply()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
+    if (!reply) {
+        return;
+    }
+
+    reply->deleteLater();
+    _groundStationPortReply = nullptr;
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qCWarning(LinkManagerLog) << "Failed to request ground station port:" << reply->errorString() << "HTTP status:" << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        return;
+    }
+
+    const QByteArray data = reply->readAll();
+    qCDebug(LinkManagerLog) << "Ground station port response:" << data;
+    
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qCWarning(LinkManagerLog) << "Failed to parse ground station port response:" << parseError.errorString() << "Response data:" << data;
+        return;
+    }
+
+    QJsonObject obj = doc.object();
+    
+    // 检查服务器返回的格式：{success: true, msg: "...", data: {port: ...}}
+    if (!obj.contains("success") || !obj["success"].toBool()) {
+        QString errorMsg = obj.contains("msg") ? obj["msg"].toString() : "Unknown error";
+        qCWarning(LinkManagerLog) << "Ground station port request failed:" << errorMsg;
+        return;
+    }
+
+    // 从data字段中获取port
+    if (!obj.contains("data") || !obj["data"].isObject()) {
+        qCWarning(LinkManagerLog) << "Invalid ground station port response: missing or invalid data field";
+        return;
+    }
+
+    QJsonObject dataObj = obj["data"].toObject();
+    if (!dataObj.contains("port") || !dataObj["port"].isDouble()) {
+        qCWarning(LinkManagerLog) << "Invalid ground station port response: missing or invalid port field in data";
+        return;
+    }
+
+    const quint16 port = static_cast<quint16>(dataObj["port"].toInt());
+    const QString groundStationName = _autoConnectSettings->groundStationName()->rawValue().toString().trimmed();
+
+    qCDebug(LinkManagerLog) << "Ground station port received:" << port << "for station:" << groundStationName;
+
+    // 检查是否已存在同名配置，如果存在则删除
+    for (auto it = _rgLinkConfigs.begin(); it != _rgLinkConfigs.end();) {
+        const SharedLinkConfigurationPtr &config = *it;
+        if (config->name().startsWith(tr("地面站连接"))) {
+            LinkInterface* const link = config->link();
+            if (link) {
+                link->disconnect();
+            }
+            _removeConfiguration(config.get());
+            it = _rgLinkConfigs.erase(it);
+        } else {
+            ++it;
+        }
+    }
+
+    // 创建TCP配置
+    TCPConfiguration *tcpConfig = new TCPConfiguration(tr("地面站连接 (%1)").arg(groundStationName));
+    QString host = _autoConnectSettings->groundStationStatusHost()->rawValue().toString();
+    tcpConfig->setHost(host);
+    tcpConfig->setPort(port);
+    tcpConfig->setAutoConnect(true); // 自动连接
+    tcpConfig->setHighLatency(false); // 不高延迟
+    // 不设置为dynamic，这样它会在UI中显示，但通过特殊名称标识，在保存时跳过
+    tcpConfig->setDynamic(false);
+
+    _groundStationTcpConfig = addConfiguration(tcpConfig);
+    qCDebug(LinkManagerLog) << "Ground station TCP configuration created:" << tcpConfig->name() << "host:" << tcpConfig->host() << "port:" << tcpConfig->port();
+    
+    // 立即创建并连接 Link
+    createConnectedLink(_groundStationTcpConfig);
+}
+
 void LinkManager::shutdown()
 {
     setConnectionsSuspended(tr("Shutdown"));
+
+
     disconnectAll();
 
     // Wait for all the vehicles to go away to ensure an orderly shutdown and deletion of all objects
@@ -728,6 +895,15 @@ void LinkManager::startAutoConnectedLinks()
             createConnectedLink(sharedConfig);
         }
     }
+
+    // 检查是否需要创建地面站TCP连接
+    _addGroundStationTcpLink();
+}
+
+void LinkManager::createGroundStationTcpLink()
+{
+    qCDebug(LinkManagerLog) << "Manual trigger: createGroundStationTcpLink";
+    _addGroundStationTcpLink();
 }
 
 uint8_t LinkManager::allocateMavlinkChannel()

@@ -40,6 +40,8 @@ public:
     DEFINE_SETTINGFACT(mapboxStyle)
     DEFINE_SETTINGFACT(esriToken)
     DEFINE_SETTINGFACT(customURL)
+    DEFINE_SETTINGFACT(customURLIP)
+    DEFINE_SETTINGFACT(customURLPort)
     DEFINE_SETTINGFACT(vworldToken)
     DEFINE_SETTINGFACT(openaipToken)
     DEFINE_SETTINGFACT(gstDebugLevel)

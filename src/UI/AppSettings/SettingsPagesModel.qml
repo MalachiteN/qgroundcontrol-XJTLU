@@ -59,7 +59,7 @@ ListModel {
 
     ListElement {
         name: qsTr("Maps")
-        url: "qrc:/qml/QGroundControl/AppSettings/MapSettings.qml"
+        url: "qrc:/qml/QGroundControl/AppSettings/MapSettingsSimplified.qml"
         iconUrl: "qrc:/InstrumentValueIcons/globe.svg"
         pageVisible: function() { return true }
     }

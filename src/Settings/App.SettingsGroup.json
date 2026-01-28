@@ -217,6 +217,18 @@
     "default":     ""
 },
 {
+    "name":             "customURLIP",
+    "shortDesc": "Custom Map Server IP",
+    "type":             "string",
+    "default":     "111.229.242.175"
+},
+{
+    "name":             "customURLPort",
+    "shortDesc": "Custom Map Server Port",
+    "type":             "string",
+    "default":     "5000"
+},
+{
     "name":             "vworldToken",
     "shortDesc": "VWorld Token",
     "longDesc":  "Your personal access token for VWorld maps",

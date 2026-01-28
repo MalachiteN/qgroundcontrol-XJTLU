@@ -118,7 +118,7 @@ SettingsPage {
         }
 
         LabelledButton {
-            label: qsTr("确认")
+            label: qsTr("变更后手动创建连接")
             buttonText: qsTr("确认")
             onClicked: {
                 // 设置已通过Fact自动保存，立即触发创建连接

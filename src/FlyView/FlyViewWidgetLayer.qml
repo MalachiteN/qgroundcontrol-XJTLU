@@ -158,6 +158,15 @@ Item {
         property real leftEdgeCenterInset:  leftEdgeTopInset
     }
 
+    WaterQualityOverlay {
+        id:                     waterQualityOverlay
+        anchors.left:           toolStrip.right
+        anchors.leftMargin:     ScreenTools.defaultFontPixelWidth
+        anchors.verticalCenter: parent.verticalCenter
+        z:                      QGroundControl.zOrderWidgets
+        visible:                !QGroundControl.videoManager.fullScreen
+    }
+
     VehicleWarnings {
         anchors.centerIn:   parent
         z:                  QGroundControl.zOrderTopMost

@@ -128,6 +128,10 @@ ApplicationWindow {
         showTool(qsTr("Analyze Tools"), "qrc:/qml/QGroundControl/AnalyzeView/AnalyzeView.qml", "/qmlimages/Analyze.svg")
     }
 
+    function showWaterQualityTool() {
+        showTool(qsTr("水质"), "qrc:/qml/QGroundControl/WaterQualityView/WaterQualityView.qml", "/qmlimages/Analyze.svg")
+    }
+
     function showVehicleConfig() {
         showTool(qsTr("Vehicle Configuration"), "qrc:/qml/QGroundControl/VehicleSetup/SetupView.qml", "/qmlimages/Gears.svg")
     }

@@ -19,6 +19,7 @@
 #endif
 #include "SettingsManager.h"
 #include "VideoReceiver.h"
+#include "WaterQualityView/WaterQualityManager.h"
 
 #ifdef QGC_CUSTOM_BUILD
 #include CUSTOMHEADER
@@ -257,6 +258,7 @@ QQmlApplicationEngine *QGCCorePlugin::createQmlApplicationEngine(QObject *parent
     qmlEngine->addImportPath(QStringLiteral("qrc:/qml"));
     qmlEngine->rootContext()->setContextProperty(QStringLiteral("joystickManager"), JoystickManager::instance());
     qmlEngine->rootContext()->setContextProperty(QStringLiteral("debugMessageModel"), QGCLogging::instance());
+    qmlEngine->rootContext()->setContextProperty(QStringLiteral("WaterQualityManager"), WaterQualityManager::instance());
     return qmlEngine;
 }
 

@@ -57,6 +57,19 @@ ToolIndicatorPage {
             }
 
             SubMenuButton {
+                implicitHeight: root._toolButtonHeight
+                Layout.fillWidth: true
+                text: qsTr("水质")
+                imageResource: "/qmlimages/Analyze.svg"
+                onClicked: {
+                    if (mainWindow.allowViewSwitch()) {
+                        mainWindow.closeIndicatorDrawer()
+                        mainWindow.showWaterQualityTool()
+                    }
+                }
+            }
+
+            SubMenuButton {
                 id: setupButton
                 implicitHeight: root._toolButtonHeight
                 Layout.fillWidth: true

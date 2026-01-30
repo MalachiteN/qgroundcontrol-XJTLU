@@ -226,9 +226,9 @@ Item {
             }
         }
 
-        onStatusChanged: {
+        onStatusChanged: (status) => {
             if (status == WebSocket.Error) {
-                console.error("WS Error:", errorString)
+                console.error("WS Error:", socket.errorString)
             } else if (status == WebSocket.Open) {
                 console.log("WS Connected")
             }

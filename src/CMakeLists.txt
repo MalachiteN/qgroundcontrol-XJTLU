@@ -54,6 +54,7 @@ add_subdirectory(UTMSP)
 add_subdirectory(Vehicle)
 add_subdirectory(VideoManager)
 add_subdirectory(Viewer3D)
+add_subdirectory(WaterQualityView)
 
 # Platform-specific
 add_subdirectory(Android)
@@ -110,6 +111,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         Qt6::Widgets
         Qt6::Xml
         Qt6::StateMachine
+        Qt6::WebSockets
 
         # Qt6 QML/Quick
         Qt6::Qml
@@ -141,6 +143,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         ToolbarModule
         UTMSPModule
         VehicleSetupModule
+        WaterQualityViewModule
 )
 
 # ----------------------------------------------------------------------------

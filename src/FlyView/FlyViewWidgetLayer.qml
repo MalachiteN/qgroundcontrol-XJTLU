@@ -17,6 +17,36 @@ import QGroundControl.FlightMap
 Item {
     id: _root
 
+    // Fly View: 将中文文本字体切换为“等线”
+    // 由于 QGCLabel 自身会强制设置 font.family，这里用遍历方式在组件完成后覆盖为等线。
+    Component.onCompleted: _applyFontToChineseText()
+
+    function _applyFontToChineseText() {
+        var targetFamily = "等线"
+        var chineseRe = /[\u4e00-\u9fff]/
+
+        function walk(item) {
+            if (!item)
+                return
+
+            // 如果该控件有 text 且包含中文字符，则覆盖字体族
+            if (item.text !== undefined && typeof item.text === "string" && chineseRe.test(item.text)) {
+                if (item.font !== undefined && item.font.family !== undefined) {
+                    item.font.family = targetFamily
+                }
+            }
+
+            // 递归遍历子对象
+            if (item.children !== undefined && item.children.length !== undefined) {
+                for (var i = 0; i < item.children.length; i++) {
+                    walk(item.children[i])
+                }
+            }
+        }
+
+        walk(_root)
+    }
+
     property var    parentToolInsets
     property var    totalToolInsets:        _totalToolInsets
     property var    mapControl

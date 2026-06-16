@@ -157,6 +157,8 @@ Qt*-linux*.tar.*
 
 # AI Assistants
 .claude/
+.mutsumi/
+.continue/
 .claudeignore
 .geminiignore
 .cursorignore

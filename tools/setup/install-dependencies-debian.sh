@@ -2,15 +2,26 @@
 set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get update -y -qq
-apt-get install -y -qq --no-install-recommends \
-    software-properties-common \
-    gnupg2 \
-    ca-certificates
+# Detect distribution: this script is used for both Ubuntu and Debian,
+# but "software-properties-common" and the "universe" component are
+# Ubuntu-specific.
+ID=$(. /etc/os-release && echo "${ID:-}")
 
-# Enable the “universe” component (needed for several dev packages)
-add-apt-repository -y universe
 apt-get update -y -qq
+
+if [ "${ID}" = "ubuntu" ]; then
+    apt-get install -y -qq --no-install-recommends \
+        software-properties-common \
+        gnupg2 \
+        ca-certificates
+    # Enable the “universe” component (needed for several dev packages)
+    add-apt-repository -y universe
+    apt-get update -y -qq
+else
+    apt-get install -y -qq --no-install-recommends \
+        gnupg2 \
+        ca-certificates
+fi
 
 # --------------------------------------------------------------------
 # Core build tools
@@ -41,10 +52,19 @@ apt-get install -y -qq --no-install-recommends \
     wget \
     zsync
 
-pipx ensurepath
-pipx install cmake
-pipx install ninja
-pipx install gcovr
+# Run pipx as the calling user so tools end up in ~/.local/bin, not /root/.
+# QGroundControl should be built as a regular user.
+if [ -n "${SUDO_USER:-}" ]; then
+    sudo -u "$SUDO_USER" pipx ensurepath
+    sudo -u "$SUDO_USER" pipx install cmake
+    sudo -u "$SUDO_USER" pipx install ninja
+    sudo -u "$SUDO_USER" pipx install gcovr
+else
+    pipx ensurepath
+    pipx install cmake
+    pipx install ninja
+    pipx install gcovr
+fi
 
 # --------------------------------------------------------------------
 # Qt6 compile/runtime dependencies
@@ -90,7 +110,6 @@ apt-get install -y -qq --no-install-recommends \
     libgstreamer1.0-dev \
     libgstreamer-plugins-bad1.0-dev \
     libgstreamer-plugins-base1.0-dev \
-    libgstreamer-plugins-good1.0-dev \
     libgstreamer-gl1.0-0 \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-base \

@@ -23,6 +23,10 @@ SettingsPage {
     property real   _urlFieldWidth:             ScreenTools.defaultFontPixelWidth * 40
     property bool   _requiresUDPUrl:            _isUDP264 || _isUDP265 || _isMPEGTS
 
+    property var    _autoConnectSettings:       QGroundControl.settingsManager.autoConnectSettings
+    property string _groundStationName:         _autoConnectSettings.groundStationName.valueString
+    property string _relayServerHost:           _autoConnectSettings.groundStationStatusHost.valueString
+
     SettingsGroupLayout {
         Layout.fillWidth:   true
         heading:            qsTr("视频源")
@@ -50,6 +54,37 @@ SettingsPage {
             label:                      qsTr("RTSP 地址")
             fact:                       _videoSettings.rtspUrl
             visible:                    _isRTSP && _videoSettings.rtspUrl.visible
+        }
+
+        RowLayout {
+            Layout.fillWidth:   true
+            visible:            _isRTSP && _videoSettings.rtspUrl.visible
+
+            QGCLabel {
+                text:           qsTr("无人船")
+                font.pointSize: ScreenTools.defaultFontPointSize
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            QGCComboBox {
+                id:             boatSelector
+                Layout.fillWidth: true
+                model:          [qsTr("点击刷新...")]
+
+                onActivated: (index) => {
+                    var selected = textAt(index)
+                    if (selected === qsTr("点击刷新...")) {
+                        fetchBoatList()
+                    } else if (selected !== qsTr("无在线无人船") && selected !== qsTr("连接失败") && selected !== qsTr("请先配置地面站连接") && selected !== qsTr("解析失败")) {
+                        setRtspUrlForBoat(selected)
+                    }
+                }
+            }
+
+            QGCButton {
+                text:       qsTr("刷新")
+                onClicked:  fetchBoatList()
+            }
         }
 
         LabelledFactTextField {
@@ -131,5 +166,50 @@ SettingsPage {
             visible:            fact.visible
             enabled:            _videoSettings.enableStorageLimit.rawValue
         }
+    }
+
+    function fetchBoatList() {
+        if (!_relayServerHost || !_groundStationName) {
+            boatSelector.model = [qsTr("请先配置地面站连接")]
+            return
+        }
+
+        var xhr = new XMLHttpRequest()
+        var url = "http://" + _relayServerHost + ":11454/list?name=" + _groundStationName
+        console.log("Fetching boat list from:", url)
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    try {
+                        var json = JSON.parse(xhr.responseText)
+                        var boats = json.boats || []
+                        var comboModel = []
+
+                        if (boats.length === 0) {
+                            comboModel.push(qsTr("无在线无人船"))
+                        } else {
+                            for (var i = 0; i < boats.length; i++) {
+                                comboModel.push(boats[i])
+                            }
+                        }
+
+                        boatSelector.model = comboModel
+                    } catch (e) {
+                        console.error("JSON Parse error:", e)
+                        boatSelector.model = [qsTr("解析失败")]
+                    }
+                } else {
+                    console.error("Boat list fetch failed:", xhr.status)
+                    boatSelector.model = [qsTr("连接失败")]
+                }
+            }
+        }
+        xhr.open("GET", url)
+        xhr.send()
+    }
+
+    function setRtspUrlForBoat(boatName) {
+        _videoSettings.rtspUrl.value = "rtsp://" + _relayServerHost + ":8554/" + _groundStationName + "/" + boatName
     }
 }

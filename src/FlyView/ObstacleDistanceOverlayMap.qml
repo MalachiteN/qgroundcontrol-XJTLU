@@ -29,13 +29,7 @@ Item {
             metersToPixels = metersPerPixel
         }
 
-        var grad = ctx.createRadialGradient(centerX, centerY, minGradPixels, centerX, centerY, maxGradPixels)
-        grad.addColorStop(0, Qt.rgba(1, 0, 0, 1))
-        grad.addColorStop(0.1, Qt.rgba(1, 0, 0, 0.7))
-        grad.addColorStop(0.5, Qt.rgba(1, 0.64, 0, 0.7))
-        grad.addColorStop(0.65, Qt.rgba(1, 0.64, 0, 0.3))
-        grad.addColorStop(0.95, Qt.rgba(0, 1, 0, 0.3))
-        grad.addColorStop(1, Qt.rgba(0, 1, 0, 0))
+        var grad = Qt.rgba(0.8, 0.5, 0.1, 0.5)
 
         var points = []
         const height = minRadiusPixels / 8

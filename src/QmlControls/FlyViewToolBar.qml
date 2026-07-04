@@ -42,19 +42,13 @@ Item {
                 width:  leftPanelLayout.implicitWidth
                 height: parent.height
 
-                // Gradient background behind Q button and main status indicator
+                // Brand background behind Q button and main status indicator
                 Rectangle {
                     id:         gradientBackground
                     height:     parent.height
                     width:      mainStatusLayout.width
                     opacity:    qgcPal.windowTransparent.a
-
-                    gradient: Gradient {
-                        orientation: Gradient.Horizontal
-                        GradientStop { position: 0; color: _mainStatusBGColor }
-                        //GradientStop { position: qgcButton.x + qgcButton.width; color: _mainStatusBGColor }
-                        GradientStop { position: 1; color: qgcPal.window }
-                    }
+                    color:      _mainStatusBGColor
                 }
 
                 // Standard toolbar background to the right of the gradient

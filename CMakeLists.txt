@@ -236,6 +236,7 @@ endif()
 list(APPEND QGC_RESOURCES
     "${CMAKE_SOURCE_DIR}/qgcimages.qrc"
     "${CMAKE_SOURCE_DIR}/qgcresources.qrc"
+    "${CMAKE_SOURCE_DIR}/googlefonts.qrc"
     "${CMAKE_SOURCE_DIR}/resources/InstrumentValueIcons/InstrumentValueIcons.qrc"
 )
 

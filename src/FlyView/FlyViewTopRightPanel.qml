@@ -62,6 +62,7 @@ Rectangle {
             Rectangle {
                 anchors.fill: parent
                 visible:      topRightPanel.height === maximumHeight
+                color:        "transparent"
 
                 Rectangle {
                     anchors.left:       parent.left
@@ -70,15 +71,6 @@ Rectangle {
                     anchors.margins:    0
                     height:             1
                     color:              QGroundControl.globalPalette.groupBorder
-                }
-
-                gradient: Gradient {
-                    orientation: Gradient.Vertical
-                    GradientStop { position: 0.00; color: topRightPanel.color }
-                    GradientStop { position: 0.05; color: "transparent" }
-
-                    GradientStop { position: 0.95; color: "transparent" }
-                    GradientStop { position: 1.00; color: topRightPanel.color }
                 }
 
                 Rectangle {

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file alias="noto-sans">resources/fonts/NotoSans-Regular.ttf</file>
+        <file alias="noto-sans-semibold">resources/fonts/NotoSans-SemiBold.ttf</file>
+        <file alias="noto-sans-sc">resources/fonts/NotoSansSC-Regular.ttf</file>
+        <file alias="noto-sans-sc-semibold">resources/fonts/NotoSansSC-SemiBold.ttf</file>
+        <file alias="NanumGothic-Regular">resources/fonts/NanumGothic-Regular.ttf</file>
+        <file alias="NanumGothic-Bold">resources/fonts/NanumGothic-Bold.ttf</file>
+    </qresource>
+</RCC>

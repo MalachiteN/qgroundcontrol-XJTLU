@@ -95,12 +95,7 @@ MapQuickItem {
                         context.lineTo(point4[0], point4[1]);
                         context.closePath();
 
-                        const gradient = context.createLinearGradient(canvas.width / 2, canvas.height , canvas.width / 2, 0);
-                        gradient.addColorStop(0.3, Qt.rgba(255,255,255,0));
-                        gradient.addColorStop(0.5, Qt.rgba(255,255,255,0.5));
-                        gradient.addColorStop(1, qgcPal.mapIndicator);
-
-                        context.fillStyle = gradient;
+                        context.fillStyle = qgcPal.mapIndicator;
                         context.fill();
                         context.restore();
                     }

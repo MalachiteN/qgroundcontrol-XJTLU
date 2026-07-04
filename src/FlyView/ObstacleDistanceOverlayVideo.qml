@@ -58,13 +58,7 @@ Item {
         const levelMeters = 10
         const levelNum = obstacleDistance._maxRadiusMeters / levelMeters
 
-        var grad = ctx.createRadialGradient(centerX, centerY, maxGradPixels - segmentHeightPixels * levelNum * 2, centerX, centerY, maxGradPixels)
-        grad.addColorStop(0, Qt.rgba(1, 0, 0, 0.9))
-        grad.addColorStop(0.1, Qt.rgba(1, 0, 0, 0.3))
-        grad.addColorStop(0.5, Qt.rgba(1, 0.64, 0, 0.3))
-        grad.addColorStop(0.65, Qt.rgba(1, 0.64, 0, 0.2))
-        grad.addColorStop(0.95, Qt.rgba(0, 1, 0, 0.1))
-        grad.addColorStop(1, Qt.rgba(0, 1, 0, 0))
+        var grad = Qt.rgba(0.8, 0.5, 0.1, 0.3)
 
         const segNum = 16
         const incDeg = 360 / segNum

@@ -210,13 +210,22 @@ void QGCApplication::init()
         SettingsManager::instance()->mavlinkSettings()->gcsMavlinkSystemID()->setRawValue(_systemId);
     }
 
-    // Although this should really be in _initForNormalAppBoot putting it here allowws us to create unit tests which pop up more easily
-    if (QFontDatabase::addApplicationFont(":/fonts/opensans") < 0) {
-        qCWarning(QGCApplicationLog) << "Could not load /fonts/opensans font";
+    // Google Fonts: Noto Sans (Latin) + Noto Sans SC (CJK fallback)
+    // Qt auto-falls back from Noto Sans to Noto Sans SC for Chinese characters
+    if (QFontDatabase::addApplicationFont(":/fonts/noto-sans") < 0) {
+        qCWarning(QGCApplicationLog) << "Could not load /fonts/noto-sans font";
     }
 
-    if (QFontDatabase::addApplicationFont(":/fonts/opensans-demibold") < 0) {
-        qCWarning(QGCApplicationLog) << "Could not load /fonts/opensans-demibold font";
+    if (QFontDatabase::addApplicationFont(":/fonts/noto-sans-semibold") < 0) {
+        qCWarning(QGCApplicationLog) << "Could not load /fonts/noto-sans-semibold font";
+    }
+
+    if (QFontDatabase::addApplicationFont(":/fonts/noto-sans-sc") < 0) {
+        qCWarning(QGCApplicationLog) << "Could not load /fonts/noto-sans-sc font";
+    }
+
+    if (QFontDatabase::addApplicationFont(":/fonts/noto-sans-sc-semibold") < 0) {
+        qCWarning(QGCApplicationLog) << "Could not load /fonts/noto-sans-sc-semibold font";
     }
 
     if (_simpleBootTest) {

@@ -1,10 +1,4 @@
 <RCC>
-    <qresource prefix="/fonts">
-        <file alias="opensans">resources/fonts/OpenSans-Regular.ttf</file>
-        <file alias="opensans-demibold">resources/fonts/OpenSans-Semibold.ttf</file>
-        <file alias="NanumGothic-Regular">resources/fonts/NanumGothic-Regular.ttf</file>
-        <file alias="NanumGothic-Bold">resources/fonts/NanumGothic-Bold.ttf</file>
-    </qresource>
     <qresource prefix="/res">
         <file alias="action.svg">resources/action.svg</file>
         <file alias="AntennaRC.svg">resources/Antenna_RC.svg</file>

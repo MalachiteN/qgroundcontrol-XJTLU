@@ -12,7 +12,8 @@ Item {
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
 
-    property bool showIndicator: _activeVehicle.supportsRadio && _rcRSSIAvailable
+    property color toolbarTextColor: "#ffffff"
+    property bool  showIndicator:   _activeVehicle.supportsRadio && _rcRSSIAvailable
 
     property var    _activeVehicle:     QGroundControl.multiVehicleManager.activeVehicle
     property bool   _rcRSSIAvailable:   _activeVehicle.rcRSSI > 0 && _activeVehicle.rcRSSI <= 100
@@ -48,13 +49,14 @@ Item {
             source:             "/qmlimages/RC.svg"
             fillMode:           Image.PreserveAspectFit
             opacity:            _rcRSSIAvailable ? 1 : 0.5
-            color:              qgcPal.buttonText
+            color:              toolbarTextColor
         }
 
         SignalStrength {
             anchors.verticalCenter: parent.verticalCenter
             size:                   parent.height * 0.5
             percent:                _rcRSSIAvailable ? _activeVehicle.rcRSSI : 0
+            toolbarTextColor:       control.toolbarTextColor
         }
     }
 

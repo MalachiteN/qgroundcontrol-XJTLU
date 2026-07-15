@@ -11,6 +11,7 @@ Item {
     width:          escIndicatorRow.width
 
     property bool showIndicator: _escs.count > 0
+    property color toolbarTextColor: "#ffffff"
 
     property var  _activeVehicle:   QGroundControl.multiVehicleManager.activeVehicle
     property var  _escs:            _activeVehicle ? _activeVehicle.escs : null
@@ -73,7 +74,7 @@ Item {
             source:             "/qmlimages/EscIndicator.svg"
             fillMode:           Image.PreserveAspectFit
             sourceSize.height:  height
-            color:              qgcPal.windowTransparentText
+            color:              toolbarTextColor
         }
 
         Column {
@@ -83,7 +84,7 @@ Item {
 
             QGCLabel {
                 anchors.horizontalCenter:   parent.horizontalCenter
-                color:                      qgcPal.windowTransparentText
+                color:                      toolbarTextColor
                 text:                       _onlineMotorCount.toString()
                 font.pointSize:             ScreenTools.smallFontPointSize
             }

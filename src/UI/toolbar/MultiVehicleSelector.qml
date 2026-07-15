@@ -10,6 +10,7 @@ RowLayout {
     id:         control
     spacing:    0
 
+    property color  toolbarTextColor:     "#ffffff"
     property bool   showIndicator:        _multipleVehicles
     property var    _activeVehicle:       QGroundControl.multiVehicleManager.activeVehicle
     property bool   _multipleVehicles:    QGroundControl.multiVehicleManager.vehicles.count > 1
@@ -31,12 +32,13 @@ RowLayout {
             height:     ScreenTools.defaultFontPixelHeight * 1.33
             fillMode:   Image.PreserveAspectFit
             mipmap:     true
-            color:      qgcPal.text
+            color:      toolbarTextColor
             source:     "/InstrumentValueIcons/airplane.svg"
         }
 
         QGCLabel {
             text:               _activeVehicle ? qsTr("Vehicle") + " " + _activeVehicle.id : qsTr("N/A")
+            color:              toolbarTextColor
             font.pointSize:     ScreenTools.mediumFontPointSize
             Layout.alignment:   Qt.AlignCenter
 

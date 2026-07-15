@@ -5,7 +5,10 @@ import QGroundControl.Controls
 import QGroundControl.Toolbar
 
 Item {
+    id: control
     implicitWidth: mainLayout.width + _widthMargin
+
+    property color toolbarTextColor: "#ffffff"
 
     property var  _activeVehicle:           QGroundControl.multiVehicleManager.activeVehicle
     property real _toolIndicatorMargins:    ScreenTools.defaultFontPixelHeight * 0.66
@@ -27,6 +30,11 @@ Item {
                 anchors.bottom:     parent.bottom
                 source:             modelData
                 visible:            item.showIndicator
+                onLoaded: {
+                    if (item && item.toolbarTextColor !== undefined) {
+                        item.toolbarTextColor = Qt.binding(function() { return control.toolbarTextColor })
+                    }
+                }
             }
         }
 
@@ -39,6 +47,11 @@ Item {
                 anchors.bottom:     parent.bottom
                 source:             modelData
                 visible:            item.showIndicator
+                onLoaded: {
+                    if (item && item.toolbarTextColor !== undefined) {
+                        item.toolbarTextColor = Qt.binding(function() { return control.toolbarTextColor })
+                    }
+                }
             }
         }
     }

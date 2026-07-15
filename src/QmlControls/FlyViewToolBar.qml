@@ -18,14 +18,34 @@ Item {
     property var    _activeVehicle:     QGroundControl.multiVehicleManager.activeVehicle
     property bool   _communicationLost: _activeVehicle ? _activeVehicle.vehicleLinkManager.communicationLost : false
     property color  _mainStatusBGColor: qgcPal.brandingPurple
+    property color  _toolbarTextColor:  "#ffffff"
     property real   _leftRightMargin:   ScreenTools.defaultFontPixelWidth * 0.75
     property var    _guidedController:  globals.guidedControllerFlyView
+
+    on_MainStatusBGColorChanged: _updateToolbarTextColor(_mainStatusBGColor)
+
+    function _updateToolbarTextColor(bgColor) {
+        var r = bgColor.r
+        var g = bgColor.g
+        var b = bgColor.b
+        var luminance = 0.299 * r + 0.587 * g + 0.114 * b
+        _toolbarTextColor = luminance > 0.5 ? "#000000" : "#ffffff"
+    }
+
+    Component.onCompleted: _updateToolbarTextColor(_mainStatusBGColor)
 
     function dropMainStatusIndicatorTool() {
         mainStatusIndicator.dropMainStatusIndicator();
     }
 
     QGCPalette { id: qgcPal }
+
+    // Full-width status background covering the entire toolbar
+    Rectangle {
+        anchors.fill:   parent
+        opacity:        qgcPal.windowTransparent.a
+        color:          _mainStatusBGColor
+    }
 
     QGCFlickable {
         anchors.fill:       parent
@@ -41,23 +61,6 @@ Item {
                 id:     leftPanel
                 width:  leftPanelLayout.implicitWidth
                 height: parent.height
-
-                // Brand background behind Q button and main status indicator
-                Rectangle {
-                    id:         gradientBackground
-                    height:     parent.height
-                    width:      mainStatusLayout.width
-                    opacity:    qgcPal.windowTransparent.a
-                    color:      _mainStatusBGColor
-                }
-
-                // Standard toolbar background to the right of the gradient
-                Rectangle {
-                    anchors.left:   gradientBackground.right
-                    anchors.right:  parent.right
-                    height:         parent.height
-                    color:          qgcPal.windowTransparent
-                }
 
                 RowLayout {
                     id:         leftPanelLayout
@@ -80,6 +83,7 @@ Item {
                         MainStatusIndicator {
                             id:                 mainStatusIndicator
                             Layout.fillHeight:  true
+                            toolbarTextColor:   control._toolbarTextColor
                         }
                     }
 
@@ -93,6 +97,7 @@ Item {
                     FlightModeIndicator {
                         Layout.fillHeight:  true
                         visible:            _activeVehicle
+                        toolbarTextColor:   control._toolbarTextColor
                     }
                 }
             }
@@ -102,11 +107,6 @@ Item {
                 width:  Math.max(guidedActionConfirm.visible ? guidedActionConfirm.width : 0, control.width - (leftPanel.width + rightPanel.width))
                 height: parent.height
 
-                Rectangle {
-                    anchors.fill:   parent
-                    color:          qgcPal.windowTransparent
-                }
-
                 GuidedActionConfirm {
                     id:                         guidedActionConfirm
                     height:                     parent.height
@@ -115,6 +115,7 @@ Item {
                     guidedValueSlider:          control.guidedValueSlider
                     utmspSliderTrigger:         control.utmspSliderTrigger
                     messageDisplay:             guidedActionMessageDisplay
+                    toolbarTextColor:           control._toolbarTextColor
                 }
             }
 
@@ -123,14 +124,10 @@ Item {
                 width:  flyViewIndicators.width
                 height: parent.height
 
-                Rectangle {
-                    anchors.fill:   parent
-                    color:          qgcPal.windowTransparent
-                }
-
                 FlyViewToolBarIndicators {
                     id:     flyViewIndicators
                     height: parent.height
+                    toolbarTextColor: control._toolbarTextColor
                 }
             }
         }

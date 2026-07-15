@@ -236,9 +236,13 @@ endif()
 list(APPEND QGC_RESOURCES
     "${CMAKE_SOURCE_DIR}/qgcimages.qrc"
     "${CMAKE_SOURCE_DIR}/qgcresources.qrc"
-    "${CMAKE_SOURCE_DIR}/googlefonts.qrc"
     "${CMAKE_SOURCE_DIR}/resources/InstrumentValueIcons/InstrumentValueIcons.qrc"
 )
+
+# Large font resources (Noto Sans SC ~10MB each) — use qt_add_big_resources to
+# avoid MSVC C1060 (compiler out of heap space) when embedding as static arrays.
+set(QGC_BIG_RESOURCES "")
+qt_add_big_resources(QGC_BIG_RESOURCES "${CMAKE_SOURCE_DIR}/googlefonts.qrc")
 
 # ============================================================================
 # QGroundControl Executable Target
@@ -249,6 +253,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     WIN32          # Windows GUI application
     MACOSX_BUNDLE  # macOS application bundle
     ${QGC_RESOURCES}
+    ${QGC_BIG_RESOURCES}
 )
 
 # ----------------------------------------------------------------------------

@@ -13,6 +13,7 @@ Item {
     width:          gimbalIndicatorRow.width
 
     property bool   showIndicator:              gimbalController.gimbals.count
+    property color  toolbarTextColor:           "#ffffff"
 
     property var    activeVehicle:              QGroundControl.multiVehicleManager.activeVehicle
     property var    gimbalController:           activeVehicle.gimbalController
@@ -52,7 +53,7 @@ Item {
                 source:                  "/res/CameraGimbal.png"
                 fillMode:                Image.PreserveAspectFit
                 sourceSize.height:       height
-                color:                   qgcPal.windowTransparentText
+                color:                   toolbarTextColor
 
             }
 
@@ -61,7 +62,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pointSize:         ScreenTools.smallFontPointSize
                 text:                   activeGimbal ? activeGimbal.deviceId.rawValue : ""
-                color:                  qgcPal.windowTransparentText
+                color:                  toolbarTextColor
                 visible:                multiGimbalSetup
             }
         }
@@ -80,7 +81,7 @@ Item {
                 text:                   activeGimbal && activeGimbal.retracted ?
                                             qsTr("Retracted") :
                                             (activeGimbal && activeGimbal.yawLock ? qsTr("Yaw locked") : qsTr("Yaw follow"))
-                color:                  qgcPal.windowTransparentText
+                color:                  toolbarTextColor
                 Layout.columnSpan:      2
                 Layout.alignment:       Qt.AlignHCenter
             }
@@ -88,7 +89,7 @@ Item {
                 id:             pitchLabel
                 font.pointSize: ScreenTools.smallFontPointSize
                 text:           activeGimbal ? qsTr("P: ") + activeGimbal.absolutePitch.valueString : ""
-                color:          qgcPal.windowTransparentText
+                color:          toolbarTextColor
             }
             QGCLabel {
                 id:             panLabel
@@ -98,7 +99,7 @@ Item {
                                         (qsTr("Az: ") + activeGimbal.absoluteYaw.valueString) :
                                         (qsTr("Y: ") + activeGimbal.bodyYaw.valueString)) :
                                     ""
-                color:          qgcPal.windowTransparentText
+                color:          toolbarTextColor
             }
         }
     }

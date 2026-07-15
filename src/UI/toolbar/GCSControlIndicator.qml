@@ -11,8 +11,9 @@ Item {
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
 
-    property var    activeVehicle:                          QGroundControl.multiVehicleManager.activeVehicle
-    property bool   showIndicator:                          activeVehicle && activeVehicle.firstControlStatusReceived
+    property color  toolbarTextColor:                       "#ffffff"
+    property var     activeVehicle:                         QGroundControl.multiVehicleManager.activeVehicle
+    property bool    showIndicator:                         activeVehicle && activeVehicle.firstControlStatusReceived
     property var    sysidInControl:                         activeVehicle ?  activeVehicle.sysidInControl : 0
     property bool   gcsControlStatusFlags_SystemManager:    activeVehicle ? activeVehicle.gcsControlStatusFlags_SystemManager : false
     property bool   gcsControlStatusFlags_TakeoverAllowed:  activeVehicle ? activeVehicle.gcsControlStatusFlags_TakeoverAllowed : false
@@ -337,7 +338,7 @@ Item {
         source:                  "/gcscontrolIndicator/gcscontrol_line.svg"
         fillMode:                Image.PreserveAspectFit
         sourceSize.height:       height
-        color:                   isThisGCSinControl ? qgcPal.colorGreen : qgcPal.text
+        color:                   isThisGCSinControl ? qgcPal.colorGreen : toolbarTextColor
     }
     QGCColoredImage {
         id:                      controlIndicatorIconAircraft
@@ -357,7 +358,7 @@ Item {
         source:                  "/gcscontrolIndicator/gcscontrol_gcs.svg"
         fillMode:                Image.PreserveAspectFit
         sourceSize.height:       height
-        color:                   qgcPal.text
+        color:                   toolbarTextColor
 
         // Current GCS in control indicator
         QGCLabel {
@@ -365,7 +366,7 @@ Item {
             text:                   sysidInControl
             font.bold:              true
             font.pointSize:         ScreenTools.smallFontPointSize * 1.1
-            color:                  isThisGCSinControl ? qgcPal.colorGreen : qgcPal.text
+            color:                  isThisGCSinControl ? qgcPal.colorGreen : toolbarTextColor
             anchors.bottom:         parent.bottom
             anchors.bottomMargin:   -margins * 0.7
             anchors.right:          parent.right

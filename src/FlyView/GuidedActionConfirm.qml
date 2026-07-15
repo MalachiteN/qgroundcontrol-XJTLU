@@ -29,6 +29,7 @@ Item {
     // Properties of UTM adapter
     property bool   utmspSliderTrigger
     property bool   _utmspEnabled:                       QGroundControl.utmspSupported
+    property color  toolbarTextColor:                    "#ffffff"
 
     Component.onCompleted: guidedController.confirmDialog = this
 
@@ -120,7 +121,7 @@ Item {
             height:             ScreenTools.defaultFontPixelHeight * 0.5
             source:             "/res/XDelete.svg"
             fillMode:           Image.PreserveAspectFit
-            color:              qgcPal.text
+            color:              toolbarTextColor
 
             QGCMouseArea {
                 fillItem:   parent

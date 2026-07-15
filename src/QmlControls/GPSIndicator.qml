@@ -12,6 +12,7 @@ Item {
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
 
+    property color  toolbarTextColor: "#ffffff"
     property var    _activeVehicle: QGroundControl.multiVehicleManager.activeVehicle
     property bool   _rtkConnected:  QGroundControl.gpsRtk.connected.value
 
@@ -32,7 +33,7 @@ Item {
                 id:                     gpsLabel
                 rotation:               90
                 text:                   qsTr("RTK")
-                color:                  qgcPal.windowTransparentText
+                color:                  toolbarTextColor
                 anchors.verticalCenter: parent.verticalCenter
                 visible:                _rtkConnected
             }
@@ -46,7 +47,7 @@ Item {
                 fillMode:           Image.PreserveAspectFit
                 sourceSize.height:  height
                 opacity:            (_activeVehicle && _activeVehicle.gps.count.value >= 0) ? 1 : 0.5
-                color:              qgcPal.windowTransparentText
+                color:              toolbarTextColor
             }
         }
 
@@ -58,13 +59,13 @@ Item {
 
             QGCLabel {
                 anchors.horizontalCenter:   hdopValue.horizontalCenter
-                color:              qgcPal.windowTransparentText
+                color:              toolbarTextColor
                 text:               _activeVehicle ? _activeVehicle.gps.count.valueString : ""
             }
 
             QGCLabel {
                 id:     hdopValue
-                color:  qgcPal.windowTransparentText
+                color:  toolbarTextColor
                 text:   _activeVehicle ? _activeVehicle.gps.hdop.value.toFixed(1) : ""
             }
         }

@@ -8,8 +8,9 @@ Item {
     width:  size
     height: size
 
-    property real size:     50
-    property real percent:  0
+    property color toolbarTextColor: "#ffffff"
+    property real  size:               50
+    property real  percent:            0
 
     QGCPalette { id: qgcPal }
 
@@ -31,7 +32,7 @@ Item {
         source:             getIcon()
         fillMode:           Image.PreserveAspectFit
         anchors.fill:       parent
-        color:              qgcPal.buttonText
+        color:              toolbarTextColor
         sourceSize.height:  size
     }
 }

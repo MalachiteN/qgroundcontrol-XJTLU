@@ -29,6 +29,8 @@ Item {
     property int threshold1: _batterySettings.threshold1.rawValue
     property int threshold2: _batterySettings.threshold2.rawValue
 
+    property color toolbarTextColor: "#ffffff"
+
     function _recalcLowestBatteryIdFromVoltage() {
         if (_activeVehicle) {
             // If there is only one battery then it is the lowest
@@ -328,7 +330,7 @@ Item {
                 QGCLabel {
                     Layout.alignment:       Qt.AlignHCenter
                     verticalAlignment:      Text.AlignVCenter
-                    color:                  qgcPal.windowTransparentText
+                    color:                  toolbarTextColor
                     text:                   getBatteryPercentageText()
                     font.pointSize:         _showBoth ? ScreenTools.defaultFontPointSize : ScreenTools.mediumFontPointSize
                     visible:                _showBoth || _showPercentage
@@ -337,7 +339,7 @@ Item {
                 QGCLabel {
                     Layout.alignment:       Qt.AlignHCenter
                     font.pointSize:         _showBoth ? ScreenTools.defaultFontPointSize : ScreenTools.mediumFontPointSize
-                    color:                  qgcPal.windowTransparentText
+                    color:                  toolbarTextColor
                     text:                   getBatteryVoltageText()
                     visible:                _showBoth || _showVoltage
                 }

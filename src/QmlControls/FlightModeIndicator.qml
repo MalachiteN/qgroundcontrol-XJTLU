@@ -12,6 +12,7 @@ Item {
 
     property bool   showIndicator:          true
     property bool   waitForParameters:      true   // UI won't show until parameters are ready
+    property color  toolbarTextColor:       "#ffffff"
 
     property real fontPointSize:    ScreenTools.largeFontPointSize
     property var  activeVehicle:    QGroundControl.multiVehicleManager.activeVehicle
@@ -35,14 +36,14 @@ Item {
             Layout.preferredHeight: ScreenTools.defaultFontPixelHeight
             fillMode:               Image.PreserveAspectFit
             mipmap:                 true
-            color:                  qgcPal.windowTransparentText
+            color:                  toolbarTextColor
             source:                 "/qmlimages/FlightModesComponentIcon.png"
         }
 
         QGCLabel {
             id:                 flightModeLabel
             text:               activeVehicle ? activeVehicle.flightMode : qsTr("N/A", "No data to display")
-            color:              qgcPal.windowTransparentText
+            color:              toolbarTextColor
             font.pointSize:     fontPointSize
 
         }
@@ -52,6 +53,7 @@ Item {
             Layout.alignment:       Qt.AlignVCenter
             horizontalAlignment:    Text.AlignHCenter
             text:                   _vtolInFWDFlight ? qsTr("FW\nVTOL") : qsTr("MR\nVTOL")
+            color:                  toolbarTextColor
             font.pointSize:         ScreenTools.smallFontPointSize
             wrapMode:               Text.WordWrap
             visible:                _isVTOL

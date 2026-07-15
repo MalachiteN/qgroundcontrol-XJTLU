@@ -12,7 +12,8 @@ Item {
     anchors.bottom: parent.bottom
     width:          telemIcon.width * 1.1
 
-    property bool showIndicator: _hasTelemetry
+    property color toolbarTextColor: "#ffffff"
+    property bool  showIndicator:    _hasTelemetry
 
     property var  _activeVehicle:   QGroundControl.multiVehicleManager.activeVehicle
     property bool _hasTelemetry:    _activeVehicle.telemetryLRSSI !== 0
@@ -25,7 +26,7 @@ Item {
         sourceSize.height:  height
         source:             "/qmlimages/TelemRSSI.svg"
         fillMode:           Image.PreserveAspectFit
-        color:              qgcPal.buttonText
+        color:              toolbarTextColor
     }
 
     MouseArea {

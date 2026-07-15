@@ -8,6 +8,7 @@ RowLayout {
     id:         control
     spacing:    ScreenTools.defaultFontPixelWidth
 
+    property color toolbarTextColor: "#ffffff"
     property var    _activeVehicle:     QGroundControl.multiVehicleManager.activeVehicle
     property bool   _armed:             _activeVehicle ? _activeVehicle.armed : false
     property real   _margins:           ScreenTools.defaultFontPixelWidth
@@ -31,7 +32,7 @@ RowLayout {
         Layout.preferredWidth: contentWidth + (vehicleMessagesIcon.visible ? vehicleMessagesIcon.width + control.spacing : 0)
         verticalAlignment:  Text.AlignVCenter
         text:               mainStatusText()
-        color:              qgcPal.windowTransparentText
+        color:              toolbarTextColor
         font.pointSize:     ScreenTools.largeFontPointSize
 
         property string _commLostText:      qsTr("Comms Lost")
@@ -120,7 +121,7 @@ RowLayout {
             visible:                _activeVehicle && _activeVehicle.messageCount > 0
 
             function getIconColor() {
-                let iconColor = qgcPal.windowTransparentText
+                let iconColor = toolbarTextColor
                 if (_activeVehicle) {
                     if (_activeVehicle.messageTypeWarning) {
                         iconColor = qgcPal.colorOrange
@@ -143,7 +144,7 @@ RowLayout {
         Layout.fillHeight:  true
         verticalAlignment:  Text.AlignVCenter
         text:               _vtolInFWDFlight ? qsTr("FW(vtol)") : qsTr("MR(vtol)")
-        color:              qgcPal.windowTransparentText
+        color:              toolbarTextColor
         font.pointSize:     _vehicleInAir ? ScreenTools.largeFontPointSize : ScreenTools.defaultFontPointSize
         visible:            _activeVehicle && _activeVehicle.vtol
 

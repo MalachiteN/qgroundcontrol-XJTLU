@@ -12,6 +12,7 @@ Item {
     anchors.bottom: parent.bottom
 
     property bool showIndicator: _vehicleIsSub || _showJoystickIndicator
+    property color toolbarTextColor: "#ffffff"
 
     property var _activeVehicle: QGroundControl.multiVehicleManager.activeVehicle
     property bool _vehicleIsSub: _activeVehicle && _activeVehicle.sub
@@ -63,7 +64,7 @@ Item {
                 if(globals.activeVehicle && joystickManager.activeJoystick) {
                     if(globals.activeVehicle.joystickEnabled) {
                         // Everything ready to use joystick
-                        return qgcPal.windowTransparentText
+                        return toolbarTextColor
                     }
                     // Joystick is not enabled in the joystick configuration page
                     return "yellow"

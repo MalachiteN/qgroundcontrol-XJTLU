@@ -12,6 +12,7 @@ Item {
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
 
+    property color  toolbarTextColor:   "#ffffff"
     property bool   showIndicator:      remoteIDManager.available
 
     property var    activeVehicle:      QGroundControl.multiVehicleManager.activeVehicle
@@ -102,7 +103,7 @@ Item {
             sourceSize.height:  height
             source:             "/qmlimages/RidIconText.svg"
             fillMode:           Image.PreserveAspectFit
-            color:              qgcPal.text
+            color:              toolbarTextColor
         }
     }
 

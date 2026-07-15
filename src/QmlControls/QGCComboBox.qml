@@ -51,7 +51,7 @@ T.ComboBox {
                 textMetrics.text = control.textRole ? model[i][control.textRole] : model[i]
                 _largestTextWidth = Math.max(textMetrics.width, _largestTextWidth)
             }
-            _popupWidth = _largestTextWidth + itemDelegateMetrics.leftPadding + itemDelegateMetrics.rightPadding
+            _popupWidth = _largestTextWidth + itemDelegateMetrics.leftPadding + itemDelegateMetrics.rightPadding + 2 * popup.padding
         }
     }
 
@@ -64,7 +64,7 @@ T.ComboBox {
 
     // The items in the popup
     delegate: ItemDelegate {
-        width: _popupWidth
+        width: ListView.view.width
         height: Math.round(popupItemMetrics.height * 1.75)
 
         property string _text: control.textRole ?
@@ -85,7 +85,7 @@ T.ComboBox {
         }
 
         background: Rectangle {
-            color: control.currentIndex === index ? qgcPal.buttonHighlight : qgcPal.button
+            color: control.currentIndex === index ? qgcPal.buttonHighlight : qgcPal.window
         }
 
         highlighted: control.highlightedIndex === index
@@ -127,7 +127,9 @@ T.ComboBox {
         x: control.width - _popupWidth
         y: control.height
         width: _popupWidth
-        height: Math.min(contentItem.implicitHeight, control.Window.height - topMargin - bottomMargin)
+        padding: ScreenTools.defaultBorderRadius / 2
+        height: Math.min(contentItem.implicitHeight + topPadding + bottomPadding,
+                         control.Window.height - topMargin - bottomMargin)
         topMargin: 6
         bottomMargin: 6
 
@@ -138,19 +140,14 @@ T.ComboBox {
             currentIndex: control.highlightedIndex
             highlightMoveDuration: 0
 
-            Rectangle {
-                z: 10
-                width: parent.width
-                height: parent.height
-                color: "transparent"
-                border.color: qgcPal.text
-            }
-
             T.ScrollIndicator.vertical: ScrollIndicator { }
         }
 
         background: Rectangle {
             color: qgcPal.window
+            border.color: qgcPal.text
+            border.width: 1
+            radius: ScreenTools.defaultBorderRadius
         }
     }
 }

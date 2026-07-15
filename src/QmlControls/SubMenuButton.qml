@@ -39,6 +39,7 @@ Button {
     background: Rectangle {
         id:     innerRect
         color:  qgcPal.windowShade
+        radius: ScreenTools.defaultBorderRadius
 
         implicitWidth: titleBar.x + titleBar.contentWidth + ScreenTools.defaultFontPixelWidth
 
@@ -46,6 +47,7 @@ Button {
             anchors.fill:   parent
             color:          qgcPal.buttonHighlight
             opacity:        showHighlight ? 1 : control.enabled && control.hovered ? .2 : 0
+            radius:         parent.radius
         }
 
         QGCColoredImage {

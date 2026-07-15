@@ -1,9 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 72 72">
-    <style>
-        .st1{fill:#7f0036}
-    </style>
-    <path d="M35.5 2.118v51.573L1.118 70.882z" style="fill:#c72b27"/>
-    <path d="M35 4.236v49.146L2.236 69.764zM36 0 0 72l36-18z" class="st1"/>
-    <path d="M36.5 53.691V2.118l34.382 68.764z" style="fill:#ee3424"/>
-    <path d="m37 4.236 32.764 65.528L37 53.382zM36 0v54l36 18z" class="st1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <path d="M36 3 C40 3, 47 12, 47 26 L47 54 C47 62, 42 69, 36 69 C30 69, 25 62, 25 54 L25 26 C25 12, 32 3, 36 3 Z" fill="#004a5a" stroke="#001a2a" stroke-width="1.5"/>
+  <rect x="30" y="28" width="12" height="20" rx="3" fill="#00a8a8"/>
+  <path d="M36 7 L31 18 L41 18 Z" fill="#e0e6ed"/>
 </svg>

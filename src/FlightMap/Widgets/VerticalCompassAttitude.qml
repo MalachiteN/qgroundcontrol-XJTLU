@@ -6,7 +6,7 @@ import QGroundControl.FlightMap
 
 Rectangle {
     width:  ScreenTools.defaultFontPixelHeight * 10
-    height: _outerRadius * 4
+    height: _outerRadius * 2
     radius: _outerRadius
     color:  QGroundControl.globalPalette.window
 
@@ -17,26 +17,13 @@ Rectangle {
     property real _outerRadius: width / 2
     property real _innerRadius: _outerRadius - _outerMargin
 
-    // Prevent all clicks from going through to lower layers
     DeadMouseArea {
         anchors.fill: parent
     }
 
-    QGCAttitudeWidget {
-        id:                         attitude
-        anchors.horizontalCenter:   parent.horizontalCenter
-        anchors.topMargin:          _outerMargin
-        anchors.top:                parent.top
-        size:                       _innerRadius * 2
-        vehicle:                    globals.activeVehicle
-    }
-
     QGCCompassWidget {
-        id:                         compass
-        anchors.horizontalCenter:   parent.horizontalCenter
-        anchors.topMargin:          _outerMargin * 2
-        anchors.top:                attitude.bottom
-        size:                       _innerRadius * 2
-        vehicle:                    globals.activeVehicle
+        anchors.centerIn:   parent
+        size:               _innerRadius * 2
+        vehicle:            globals.activeVehicle
     }
 }

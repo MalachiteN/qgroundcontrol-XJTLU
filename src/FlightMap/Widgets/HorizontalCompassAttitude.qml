@@ -15,30 +15,18 @@ Rectangle {
 
     property real   _defaultWidth:      mainWindow.width * 0.2
     property real   _maxWidth:          ScreenTools.defaultFontPixelHeight * 15
-    property real   _innerRadius:       (width - (_topBottomMargin * 3)) / 4
+    property real   _innerRadius:       (width - (_topBottomMargin * 2)) / 2
     property real   _outerRadius:       _innerRadius + _topBottomMargin
-    property real   _spacing:           ScreenTools.defaultFontPixelHeight * 0.33
     property real   _topBottomMargin:   (width * 0.05) / 2
 
     DeadMouseArea { anchors.fill: parent }
 
     QGCPalette { id: qgcPal }
 
-    QGCAttitudeWidget {
-        id:                     attitude
-        anchors.leftMargin:     control._topBottomMargin
-        anchors.left:           parent.left
-        size:                   control._innerRadius * 2
-        vehicle:                globals.activeVehicle
-        anchors.verticalCenter: parent.verticalCenter
-    }
-
     QGCCompassWidget {
         id:                     compass
-        anchors.leftMargin:     control._spacing
-        anchors.left:           attitude.right
         size:                   control._innerRadius * 2
         vehicle:                globals.activeVehicle
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn:       parent
     }
 }

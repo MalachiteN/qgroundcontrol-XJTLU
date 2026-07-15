@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { background: #121820; color: #e0e6ed; font-family: 'Segoe UI', sans-serif; margin: 40px; }
+  h1 { font-size: 22px; margin-bottom: 30px; }
+  .card { display: inline-block; margin: 20px; background: #1a2330; border: 1px solid #2a3340; border-radius: 16px; padding: 24px; width: 320px; vertical-align: top; }
+  .card h2 { font-size: 16px; color: #00a8a8; margin: 0 0 8px 0; }
+  .card p { font-size: 13px; color: #8a9ba8; margin: 0 0 16px 0; line-height: 1.5; }
+  .preview { text-align: center; margin: 12px 0; background: #0d1420; border-radius: 12px; padding: 20px; }
+  .preview svg { width: 96px; height: 96px; }
+  .row { display: flex; gap: 20px; justify-content: center; align-items: center; }
+  .item { text-align: center; }
+  .item .label { font-size: 11px; color: #5a6a7a; margin-top: 6px; }
+  .swatches { margin-top: 12px; font-size: 11px; color: #5a6a7a; }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: middle; margin: 0 2px; }
+</style>
+</head>
+<body>
+
+<h1>地面站图标方案预览 — 选择一个你喜欢的</h1>
+
+<!-- ===== 方案 A: 无线电塔 + 信号波 ===== -->
+<div class="card">
+  <h2>A. 无线电塔 + 信号波</h2>
+  <p>经典地面站语义：一座天线塔向两侧辐射信号弧线。与船图标（圆滑船体）视觉差异大，一眼可辨。</p>
+  <div class="preview">
+    <div class="row">
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <line x1="36" y1="16" x2="36" y2="56" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M36 24 Q26 30 26 38" fill="none" stroke="#00a8a8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M36 24 Q46 30 46 38" fill="none" stroke="#00a8a8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M36 18 Q20 28 20 42" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <path d="M36 18 Q52 28 52 42" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="36" cy="14" r="4" fill="#00a8a8"/>
+          <line x1="30" y1="58" x2="42" y2="58" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="label">静态（无航向）</div>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <line x1="36" y1="16" x2="36" y2="56" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M36 24 Q26 30 26 38" fill="none" stroke="#00a8a8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M36 24 Q46 30 46 38" fill="none" stroke="#00a8a8" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="36" cy="14" r="4" fill="#00a8a8"/>
+          <path d="M36 10 L30 4 L42 4 Z" fill="#e0e6ed"/>
+          <line x1="30" y1="58" x2="42" y2="58" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="label">方向版（有航向）</div>
+      </div>
+    </div>
+  </div>
+  <div class="swatches">
+    <span class="swatch" style="background:#00798c"></span> #00798c ·
+    <span class="swatch" style="background:#00a8a8"></span> #00a8a8 ·
+    <span class="swatch" style="background:#ffffff"></span> #ffffff
+  </div>
+</div>
+
+<!-- ===== 方案 B: 雷达扫描盘 ===== -->
+<div class="card">
+  <h2>B. 雷达扫描盘</h2>
+  <p>圆形雷达屏 + 扫描线 + 中心点，技术感强。旋转版用扫描线方向指示航向。与船的长条形轮廓差异明显。</p>
+  <div class="preview">
+    <div class="row">
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <circle cx="36" cy="36" r="22" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+          <circle cx="36" cy="36" r="15" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+          <circle cx="36" cy="36" r="8" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+          <path d="M36 36 L36 14 A22 22 0 0 1 57.5 30 Z" fill="#00a8a8" opacity="0.7"/>
+          <line x1="36" y1="36" x2="36" y2="14" stroke="#00a8a8" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="36" cy="36" r="3" fill="#ffffff"/>
+        </svg>
+        <div class="label">静态</div>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <circle cx="36" cy="36" r="22" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+          <circle cx="36" cy="36" r="15" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+          <circle cx="36" cy="36" r="8" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+          <path d="M36 36 L36 14 A22 22 0 0 1 57.5 30 Z" fill="#00a8a8" opacity="0.7"/>
+          <line x1="36" y1="36" x2="36" y2="14" stroke="#00a8a8" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="36" cy="36" r="3" fill="#ffffff"/>
+          <path d="M36 8 L31 16 L41 16 Z" fill="#e0e6ed"/>
+        </svg>
+        <div class="label">方向版</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 方案 C: 地图图钉 ===== -->
+<div class="card">
+  <h2>C. 地图图钉（含信号波）</h2>
+  <p>经典泪滴形图钉 + 内部小天线信号符号。通用"位置标记"语义，辨识度高。方向版在图钉顶部加方向缺口。</p>
+  <div class="preview">
+    <div class="row">
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <path d="M36 10 C24 10 18 20 18 30 C18 42 36 62 36 62 C36 62 54 42 54 30 C54 20 48 10 36 10 Z" fill="#ffffff"/>
+          <circle cx="36" cy="28" r="7" fill="#00798c"/>
+          <path d="M36 28 Q32 31 32 34" fill="none" stroke="#00a8a8" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M36 28 Q40 31 40 34" fill="none" stroke="#00a8a8" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <div class="label">静态</div>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <path d="M36 10 C24 10 18 20 18 30 C18 42 36 62 36 62 C36 62 54 42 54 30 C54 20 48 10 36 10 Z" fill="#ffffff"/>
+          <circle cx="36" cy="28" r="7" fill="#00798c"/>
+          <path d="M36 6 L30 14 L42 14 Z" fill="#e0e6ed"/>
+        </svg>
+        <div class="label">方向版</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 方案 D: 控制台/监视器 ===== -->
+<div class="card">
+  <h2>D. 控制台监视器</h2>
+  <p>方形屏幕 + 信号弧线，代表岸上电脑控制站。形态方正，与船的圆润轮廓形成鲜明对比。</p>
+  <div class="preview">
+    <div class="row">
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <rect x="16" y="14" width="40" height="28" rx="3" fill="#ffffff"/>
+          <rect x="20" y="18" width="32" height="20" rx="2" fill="#00798c"/>
+          <line x1="26" y1="48" x2="46" y2="48" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <line x1="30" y1="48" x2="30" y2="54" stroke="#ffffff" stroke-width="2"/>
+          <line x1="42" y1="48" x2="42" y2="54" stroke="#ffffff" stroke-width="2"/>
+          <line x1="24" y1="56" x2="48" y2="56" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M36 22 Q30 26 30 32" fill="none" stroke="#00a8a8" stroke-width="2" stroke-linecap="round"/>
+          <path d="M36 22 Q42 26 42 32" fill="none" stroke="#00a8a8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="label">静态</div>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <rect x="16" y="14" width="40" height="28" rx="3" fill="#ffffff"/>
+          <rect x="20" y="18" width="32" height="20" rx="2" fill="#00798c"/>
+          <line x1="26" y1="48" x2="46" y2="48" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <line x1="30" y1="48" x2="30" y2="54" stroke="#ffffff" stroke-width="2"/>
+          <line x1="42" y1="48" x2="42" y2="54" stroke="#ffffff" stroke-width="2"/>
+          <path d="M36 8 L30 16 L42 16 Z" fill="#e0e6ed"/>
+        </svg>
+        <div class="label">方向版</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 方案 E: 十字准星 ===== -->
+<div class="card">
+  <h2>E. 十字准星 / 定位标</h2>
+  <p>同心圆环 + 十字线 + 中心点，简洁精密。方向版在上方加方向箭头。纯几何形，与船的有机曲线对比最强。</p>
+  <div class="preview">
+    <div class="row">
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <circle cx="36" cy="36" r="20" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+          <circle cx="36" cy="36" r="13" fill="none" stroke="#ffffff" stroke-width="2"/>
+          <line x1="36" y1="8" x2="36" y2="24" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="36" y1="48" x2="36" y2="64" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="8" y1="36" x2="24" y2="36" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="36" x2="64" y2="36" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="36" cy="36" r="5" fill="#00a8a8"/>
+        </svg>
+        <div class="label">静态</div>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 72 72">
+          <rect width="72" height="72" rx="14" fill="#ffffff"/>
+          <rect x="4" y="4" width="64" height="64" rx="10" fill="#00798c"/>
+          <circle cx="36" cy="36" r="20" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+          <circle cx="36" cy="36" r="13" fill="none" stroke="#ffffff" stroke-width="2"/>
+          <line x1="36" y1="8" x2="36" y2="24" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="36" y1="48" x2="36" y2="64" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="8" y1="36" x2="24" y2="36" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="36" x2="64" y2="36" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="36" cy="36" r="5" fill="#00a8a8"/>
+          <path d="M36 4 L30 12 L42 12 Z" fill="#e0e6ed"/>
+        </svg>
+        <div class="label">方向版</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

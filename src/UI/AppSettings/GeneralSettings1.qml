@@ -250,7 +250,7 @@ SettingsPage {
                 text: qsTr("速度单位")
             }
 
-            ComboBox {
+            QGCComboBox {
                 id: speedCombo
                 Layout.fillWidth: true
                 model: [ "m/s", "km/h" ]

@@ -507,7 +507,7 @@ ApplicationWindow {
     Popup {
         id:             indicatorDrawer
         x:              calcXPosition()
-        y:              ScreenTools.toolbarHeight + _margins
+        y:              calcYPosition()
         leftInset:      0
         rightInset:     0
         topInset:       0
@@ -529,7 +529,15 @@ ApplicationWindow {
                 var xCenter = indicatorItem.mapToItem(mainWindow.contentItem, indicatorItem.width / 2, 0).x
                 return Math.max(_margins, Math.min(xCenter - (contentItem.implicitWidth / 2), mainWindow.contentItem.width - contentItem.implicitWidth - _margins - (indicatorDrawer.padding * 2) - (ScreenTools.defaultFontPixelHeight / 2)))
             } else {
-                return _margins
+                return Math.max(0, (mainWindow.contentItem.width - contentItem.implicitWidth - (indicatorDrawer.padding * 2)) / 2)
+            }
+        }
+
+        function calcYPosition() {
+            if (indicatorItem) {
+                return ScreenTools.toolbarHeight + _margins
+            } else {
+                return Math.max(0, (mainWindow.contentItem.height - contentItem.implicitHeight - (indicatorDrawer.padding * 2)) / 2)
             }
         }
 

@@ -59,7 +59,7 @@ ToolIndicatorPage {
             SubMenuButton {
                 implicitHeight: root._toolButtonHeight
                 Layout.fillWidth: true
-                text: qsTr("水质")
+                text: qsTr("Water Quality")
                 imageResource: "/qmlimages/Analyze.svg"
                 onClicked: {
                     if (mainWindow.allowViewSwitch()) {

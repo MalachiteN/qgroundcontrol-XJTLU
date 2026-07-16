@@ -1,0 +1,1321 @@
+ Multiple buttons that have the same action must be pressed simultaneously to invoke the action.
+----
+ To change this configuration, select the desired frame class below and then reboot the vehicle.
+----
+ seconds
+----
+ seconds ...
+----
+ to a powered USB port on your computer, not through a USB hub. 
+----
+ via USB to 
+----
+<br />Motors are currently assigned to a different output.
+By saying yes, all motors will be reassigned to the first %1 channels of the selected output (%2).<br />
+----
+<br />No motors are assigned yet.
+By saying yes, all motors will be assigned to the first %1 channels of the selected output (%2)
+ (you can also first assign all motors, then start the identification).<br />
+----
+<br> Controls
+----
+AHRS
+----
+Action JSON files should be created in the '%1' folder.
+----
+Active <br> Gimbal: 
+----
+Address in hex. Default is E7E7E7E7E7.
+----
+Adjust orientations as needed.
+
+ROTATION_NONE indicates component points in direction of flight.
+----
+Airmode (disable during tuning) <b><a href="https://docs.px4.io/main/en/config_mc/pid_tuning_guide_multicopter.html#airmode-mixer-saturation">?</a></b>
+----
+Allow <br> takeover
+----
+Allows access to additional providers
+----
+Also make sure you are only powered via USB 
+----
+Android: Don't save to SD card
+----
+Are you sure you want to delete '%1' preset?
+----
+Are you sure you want to delete '%1'?
+----
+Are you sure you want to delete the selected log files?
+----
+Are you sure you want to upload the selected log files?
+----
+Area
+----
+Area: m²
+----
+Attempt to load new log while log being played
+----
+Autotune: Ack error %1
+----
+Autotune: Failed
+----
+Autotune: In progress
+----
+Autotune: Not performed
+----
+Autotune: Success
+----
+Autotune: Unknown error
+----
+Autotune: in progress
+----
+Autotune: initializing
+----
+Autotune: pitch
+----
+Autotune: roll
+----
+Autotune: yaw
+----
+Broadcast%1
+----
+Change takeover condition:
+----
+Change the equivalent airspeed setpoint.
+----
+Change the forward flight loiter radius.
+----
+Change the maximum horizontal cruise speed.
+----
+Click "Refresh" to authorize
+----
+Click Ok to place your CRSF receiver in the bind mode.
+----
+Click Ok to place your Spektrum receiver in the bind mode.
+----
+Click Ok to start calibration.
+----
+Click anywhere to hide
+----
+Click on the map to add vertices. Click 'Done Fencing' when finished.
+----
+Clicking 'Apply' will save the changes you have made to your airframe configuration.<br><br>                                                                        All vehicle parameters other than Radio Calibration will be reset.<br><br>                                                                        Your vehicle will also be restarted in order to complete the process.
+----
+Computed Font Height:
+----
+Computed Screen Height:
+----
+Computed Screen Width:
+----
+Computer vision position
+----
+Configure some outputs in order to test them.
+----
+Connection status: %1
+----
+Controlled By vehicle
+----
+Controlled by vehicle
+----
+Could Not Read Data - Link is Disconnected!
+----
+Could Not Read Data - No Data Available!
+----
+Could Not Send Data - Link is Disconnected!
+----
+Could Not Send Data - Write Failed: %1
+----
+Could Not Send Data - Write Returned 0 Bytes
+----
+Could not open port: %1
+----
+Current Base Position
+----
+Current alttiude
+----
+Current mission must be paused prior to uploading a new Plan
+----
+Custom actions file - incorrect format: %1
+----
+Custom actions file - incorrect format: JsonValue not an object
+----
+Custom baud rate direction is unsupported
+----
+DNSServiceProcessResult Error: %1
+----
+Damping: increase to reduce overshoots and oscillations, but not higher than really needed.
+----
+Delete %1 and all its tiles.
+
+Is this really what you want?
+----
+Delete log file after uploading
+----
+Device disappeared from the system
+----
+Device is already open
+----
+Device is not open
+----
+Differential Gain (FW_PR_D)
+----
+Differential Gain (FW_RR_D)
+----
+Differential Gain (MC_PITCHRATE_D)
+----
+Differential Gain (MC_ROLLRATE_D)
+----
+Differential gain (MPC_XY_VEL_D_ACC)
+----
+Differential gain (MPC_Z_VEL_D_ACC)
+----
+Differential pressure
+----
+Discard Unsaved Changes, Load New Plan From Vehicle
+----
+Downloading Imageries: 
+----
+EMERGENCY HAS BEEN DECLARED, Press and Hold for 3 seconds to cancel
+----
+ESC Calibration failed. 
+----
+Edit position...
+----
+Emit heartbeat
+----
+Enable horizontal velocity slider (if enabled, individual velocity limit parameters are automatically set)
+----
+Enable responsiveness slider (if enabled, acceleration limit parameters and others are automatically set)
+----
+Enable vertical velocity slider (if enabled, individual velocity limit parameters are automatically set)
+----
+Ensure distance from launch to transition direction is far enough to complete transition.
+----
+Error Registering Zeroconf: %1
+----
+Error reading from device
+----
+Error writing to device
+----
+Example: 127.0.0.1:14550
+----
+FW(vtol)
+----
+Failed to Serialize Terrain Tile
+----
+Failed to bind UDP socket to port
+----
+Failed to flush
+----
+Failed to load custom actions file: `%1` error: `%2`
+----
+Failed to read polygon object.
+----
+Failed to read polyline object.
+----
+Failed to set Break Enabled
+----
+Failed to set DTR
+----
+Failed to set Flow Control
+----
+Failed to set RTS
+----
+Failed to set StopBits
+----
+Failed to set baud rate
+----
+Failed to set data bits
+----
+Failed to set parameters
+----
+Failed to set parity
+----
+Failed to start async read
+----
+Failed to stop async read
+----
+Failed to write data
+----
+Fast compass calibration given vehicle position and yaw. This 
+----
+Feedforward Gain (FW_PR_FF)
+----
+Feedforward Gain (FW_RR_FF)
+----
+Feedforward Gain (FW_YR_FF)
+----
+Feedforward gused to compensate for aerodynamic damping.
+----
+Fence margin
+----
+Fetch elevation data
+----
+File
+----
+File does not contain a polygon.
+----
+File does not contain a polyline.
+----
+File is not a .shp file: %1
+----
+File not found: %1
+----
+File open failed: file:error %1 %2
+----
+Final approach
+----
+Fixed Wing Landing Pattern: Setting the loiter and landing altitudes with different settings for altitude relative is no longer supported. Both have been set to relative altitude. Be sure to adjust/check your plan prior to flight.
+----
+Flight Behavior is used to configure flight characteristics.
+----
+Follow Enabled
+----
+Follow System ID
+----
+Follow the forums actively when using it.
+----
+Font Point Size 10
+----
+Font Point Size 10.5
+----
+Font Point Size 11
+----
+Font Point Size 11.5
+----
+Font Point Size 12
+----
+Font Point Size 12.5
+----
+Font Point Size 13
+----
+Font Point Size 13.5
+----
+Font Point Size 14
+----
+Font Point Size 14.5
+----
+Font Point Size 15
+----
+Font Point Size 15.5
+----
+Font Point Size 16
+----
+Font Point Size 16.5
+----
+Font Point Size 17
+----
+Forgot Your Password?
+----
+Format Camera Storage
+----
+Forwarding traffic: Mavlink traffic will keep being forwarded until application restarts
+----
+Forwards
+----
+Frame setup allows you to choose your vehicle's motor configuration. Install <b>clockwise</b><br>propellers on the <b>green thrusters</b> and <b>counter-clockwise</b> propellers on the <b>blue thrusters</b><br>(or vice-versa). The flight controller will need to be rebooted to apply changes.<br>When selecting a frame, you can choose to load the default parameter set for that frame configuration if available.
+----
+GCS 
+----
+GCS GPS
+----
+Generally does not need much adjustment, reduce this when seeing slow oscillations.
+----
+Generic MAVLink
+----
+Generic micro air vehicle
+----
+Geotagging failed. Couldn't extract time from image: %1
+----
+Geotagging failed. Couldn't open image: %1
+----
+Geotagging failed. Couldn't write to image: %1
+----
+Get Device: 
+----
+Grab or Release the cargo
+----
+GroundStation Location
+----
+Height rate feed forward (FW_T_HRATE_FF)
+----
+Horizontal (Y direction, sidewards)
+----
+Horizontal velocity (m/s)
+----
+Host name
+----
+Host name:
+----
+If Basic ID is already set on the RID device, this will be registered as Basic ID 2
+----
+If an emergency is declared, Emergency Text will be broadcast even if Broadcast setting is not enabled.
+----
+If upgrade failed, make sure to connect 
+----
+Ignoring automatically in 
+----
+Images have already been tagged. Existing images will be removed.
+----
+Increase for more responsiveness, reduce if the attitude overshoots (there is only a setpoint when yaw is fixed, i.e. when centering the stick).
+----
+Increase for more responsiveness, reduce if the attitude overshoots.
+----
+Increase for more responsiveness, reduce if the position overshoots (there is only a setpoint when hovering, i.e. when centering the stick).
+----
+Increase for more responsiveness, reduce if the velocity overshoots (and increasing D does not help).
+----
+Increase to reduce steady-state error
+----
+Increase to reduce steady-state error (e.g. wind)
+----
+Increasing this leads to rounder turns in missions (corner cutting). Use the minimum value for accurate corner tracking.
+----
+Increment Vehicle Id
+----
+Integral Gain (FW_PR_I)
+----
+Integral Gain (FW_RR_I)
+----
+Integral Gain (FW_YR_D)
+----
+Integral Gain (FW_YR_I)
+----
+Integral Gain (MC_PITCHRATE_I)
+----
+Integral Gain (MC_ROLLRATE_I)
+----
+Integral Gain (MC_YAWRATE_I)
+----
+Integral gain (MPC_XY_VEL_I_ACC)
+----
+Integral gain (MPC_Z_VEL_I_ACC)
+----
+Internal Error: Parameter MetaData major must be 1
+----
+Internal error - MAV_COMP_ID_ALL not supported
+----
+Internal error: Unable to find coordinates node in KML
+----
+Invalid Nak format
+----
+Invalid baud rate value
+----
+Invalid data or size
+----
+Invalid sockfd
+----
+Json file: '%1'. %2
+----
+Keep Current Plan, Don't Update From Vehicle
+----
+Kite
+----
+Land Descent Rate:
+----
+Land and disarm the vehicle in order to apply the parameters.
+----
+Landing gear deploy
+----
+Landing gear retract
+----
+Laser based position
+----
+Lat: 
+----
+Lat: %1
+----
+Learning
+----
+Limit the horizonal velocity (applies to all modes).
+----
+Limit the vertical velocity (applies to all modes).
+----
+Link %1: %2
+----
+Link %1: (Device: %2) %3
+----
+Link %1: (Host: %2 Port: %3) %4
+----
+Link %1: (Port: %2) %3
+----
+Link: %1, %2.
+----
+List directory failed
+----
+Load from file for review...
+----
+Log Replay Link Error
+----
+Log Replay Link Settings
+----
+Log files (*.txt)
+----
+Logging categories
+----
+Loiter to QLand
+----
+MAVLink 2 Signing
+----
+MAVLink 2.0 Log Record (PX4 only)
+----
+MAVLink 2.0 Log Upload (PX4 only)
+----
+MAVLink 2.0 Log Uploads (PX4 Pro Only)
+----
+MAVLink 2.0 Logging (PX4 Pro Only)
+----
+MAVLink Actions
+----
+MAVLink Forwarding
+----
+MAVLink Logging
+----
+MAVLink System ID
+----
+MR(vtol)
+----
+Mag %1 Orientation
+----
+Make sure you remove all props.
+----
+Make the specified location the estimator origin.
+----
+Make this log public
+----
+Make this log publicly available
+----
+Mannual
+----
+Manual Magnetic Declination
+----
+Map type:
+----
+Mavlink camera stream is automatically configured
+----
+Mavlink traffic is being forwarded to a support server
+----
+MavlinkActions
+----
+Military Grid Reference
+----
+Mixed Modes
+----
+More than one entity found.
+----
+Motor Interlock disable
+----
+Motor Interlock enable
+----
+Motor Order Identification and Assignment
+----
+Motors reversed
+----
+Move '%1' %2 to the %3 location. %4
+----
+Multiplier for P, I and D gains: increase for more responsiveness, reduce if the rates overshoot (and increasing D does not help).
+----
+NMEA External GPS Device
+----
+NMEA GPS
+----
+NMEA GPS Baudrate
+----
+NMEA stream UDP port
+----
+Name:
+----
+Navigator w/ Blue Robotics Power Sense Module
+----
+No firmware was found for the current selection.
+----
+No response to operator control request
+----
+No supported type found in KML file.
+----
+No supported types found.
+----
+No, set frame only
+----
+Normal helicopter with tail rotor.
+----
+Not Supported(Over APM 4.1)
+----
+Not all motors are assigned yet. Either clear all existing assignments or assign all motors to an output.
+----
+Not connecting to a bootloader
+----
+Note: Distance/area/temperature are fixed to metric units; speed supports only m/s and km/h.
+----
+Note: For best perfomance, please disable AutoConnect to UDP devices on the General page.
+----
+OPERATOR ID
+----
+Offset Type
+----
+Offset X
+----
+Offset Y
+----
+Offset Z
+----
+On this menu you can forward mavlink telemetry to an ardupilot support engineer.
+----
+Onboard ADSB peripheral
+----
+Onboard companion controller
+----
+Onboard gimbal
+----
+One or more actuator still needs to be assigned to an output.
+----
+Only WGS84 or UTM projections are supported.
+----
+Only single part polygons are supported.
+----
+Only single part polylines are supported.
+----
+Open console log output file failed %1 : %2
+----
+Operation timed out
+----
+Operator control unit / ground control station
+----
+Optical Flow Camera
+----
+Orbit at location
+----
+Ounces
+----
+Overall Multiplier (MC_PITCHRATE_K)
+----
+Overall Multiplier (MC_ROLLRATE_K)
+----
+Overall Multiplier (MC_YAWRATE_K)
+----
+PRJ file open failed: %1
+----
+PX4 Vehicle
+----
+Pause selected vehicles at their current position.
+----
+Pitch axis rate controller D gain
+----
+Pitch axis rate controller I gain
+----
+Pitch axis rate controller P gain
+----
+Plan Flight
+----
+Plan View - Vehicle Changed
+----
+Plan View - Vehicle Disconnected
+----
+Plan overwrite
+----
+Please enter an email address before uploading MAVLink log files.
+----
+Please unplug your Pixhawk and/or Radio from USB.
+----
+Plug in your device
+----
+Point <br> Home
+----
+Porportional Gain (FW_PR_P)
+----
+Porportional Gain (FW_YR_P)
+----
+Porportional Gain.
+----
+Porportional gain (FW_RR_P)
+----
+Porportional gain.
+----
+Port is not Connected
+----
+Port is not Writable
+----
+Position Controller
+----
+Position control mode (set this to 'simple' during tuning):
+----
+Power module not set up
+----
+Preset name cannot be blank.
+----
+Preset name cannot include the "/" character.
+----
+Press and Hold below button to declare emergency
+----
+Propellers are removed - Enable slider and motors
+----
+Propellers are removed - Enable sliders
+----
+Proportional Gain (MC_PITCH_P)
+----
+Proportional Gain (MC_ROLL_P)
+----
+Proportional Gain (MC_YAW_P)
+----
+Proportional gain (MPC_XY_P)
+----
+Proportional gain (MPC_XY_VEL_P_ACC)
+----
+Proportional gain (MPC_Z_P)
+----
+Proportional gain (MPC_Z_VEL_P_ACC)
+----
+Provide Information
+----
+QGC functions do not support shift actions
+----
+QML Desktop Available Area: 
+----
+QML Pixel Density:
+----
+QML Pixel Density: 
+----
+QML Pixel Ratio:
+----
+QML Pixel Ratio: 
+----
+QML Screen Desktop:
+----
+QML Screen Size:
+----
+QML Screen Size: 
+----
+Quad-rotor VTOL using a V-shaped quad config in vertical operation. Tailsitter
+----
+QuadPlane Acro
+----
+QuadPlane AutoTune
+----
+QuadPlane Hover
+----
+QuadPlane Land
+----
+QuadPlane Loiter
+----
+QuadPlane RTL
+----
+QuadPlane Stabilize
+----
+Quadrotor
+----
+RC receiver
+----
+RID COMMS
+----
+ROTATION_NONE indicates component points in direction of flight.
+----
+RSSI
+----
+RTK Streaming
+----
+Radio Not Ready
+----
+Radio did not respond to ATI2 command
+----
+Radio did not respond to command mode
+----
+Radio did not return board id
+----
+Rate Controller
+----
+Reboot vehicle for changes to take effect.
+----
+Rebooting board
+----
+Register Flight Plan
+----
+Release <br> Control
+----
+Remote Support
+----
+RemoteID Status
+----
+Remove Flight Plan
+----
+Request Timeout (sec):
+----
+Request sent: 
+----
+Require Confirmation for Go To Location in Guided Mode
+----
+Reset Camera Defaults
+----
+Reset Camera to Factory Settings
+----
+Reset To Default
+----
+Reset failed
+----
+Reset successful
+----
+Responsiveness
+----
+Restart application for changes to take effect.
+----
+Restore Defaults
+----
+Restore to Defaults
+----
+Resume Download
+----
+Retract
+----
+Retracted
+----
+Return At
+----
+Reverting back to takeover not allowed if GCS 
+----
+Rightwards
+----
+Roll axis angle controller P gain
+----
+Roll axis rate controller D gain
+----
+Roll axis rate controller I gain
+----
+Roll axis rate controller P gain
+----
+Roll control to yaw feedforward (FW_RLL_TO_YAW_FF)
+----
+Root of json file is not object: %1
+----
+Rotate Entry Point
+----
+Rover-Boat
+----
+SHPOpen failed.
+----
+Satellite Communication
+----
+Save CSV log of telemetry data
+----
+Save Settings As New Preset
+----
+Save application data to SD Card
+----
+Save logs even if vehicle was not armed
+----
+Save the current settings as a named preset.
+----
+Save to SD card specified for application data. But SD card is write protected. Using internal storage.
+----
+Save to SD card specified for application data. But no SD card present. Using internal storage.
+----
+Select <br> Gimbal
+----
+Select Altitude Mode
+----
+Select Link to Connect
+----
+Select Mission Command
+----
+Select Polyline File
+----
+Select Reset to reset all parameters to their defaults.
+
+Note that this will also completely reset everything, including UAVCAN nodes, all vehicle settings, setup and calibrations.
+----
+Select Tuning:
+----
+Select log save file
+----
+Select the specific receiver type below:
+----
+Selected: 
+----
+Send Control Request:
+----
+Send Status Text and Voice
+----
+Send To Vehicle
+----
+Send status text + voice
+----
+Serial <none available>
+----
+Serial Link Error
+----
+Server Addresses (optional)
+----
+Server name:
+----
+Set Estimator origin
+----
+Set Home failed, terrain data not available for selected coordinate
+----
+Set Logging
+----
+Set Rate:
+----
+Set Spin Direction 1
+----
+Set Spin Direction 2
+----
+Set home here
+----
+Set the vehicle flight mode to %1
+----
+Set the vehicle heading towards the specified location.
+----
+Set vehicle home as the specified location. This will affect Return to Home position
+----
+Show Acquire/Release control button
+----
+Show Latest
+----
+Show all settings (advanced)
+----
+Show gimbal Azimuth indicator in map
+----
+Show obstacle distance overlay
+----
+Show simple camera controls (DIGICAM_CONTROL)
+----
+Show zoom previews
+----
+Signing Failure
+----
+Signing key has changed. Don't forget to send to Vehicle(s) if needed.
+----
+Signing key has changed. Remember to send it to the vehicle for it to take effect.
+----
+Signing keys should only be sent to the vehicle over secure links.
+----
+Signing signature mismatch
+----
+Signing:
+----
+Simple accelerometer calibration is less precise but allows calibrating without rotating the vehicle. Check this if you have a large/heavy vehicle.
+----
+Slide or hold spacebar
+----
+Socket is not Writable
+----
+Socket is not connected
+----
+Some Modes Hidden
+----
+Specified altitude
+----
+Specified altitudes are Above Mean Sea Level.
+----
+Specified altitudes are distance above terrain. Actual altitudes sent to vehicle are calculated from terrain data and sent as AMSL values.
+----
+Specified altitudes are distance above terrain. The actual altitude flown is controlled by the vehicle either from terrain height maps being sent to vehicle or a distance sensor.
+----
+Specified altitudes are relative to launch position height.
+----
+Specify position
+----
+Spin Motor Again
+----
+SquareFeet
+----
+SquareKilometers
+----
+SquareMeters
+----
+SquareMiles
+----
+Start AutoTune
+----
+Start Logging
+----
+Start Mock: ArduPilot Fixed Wing (ArduPlane)
+----
+Start Mock: ArduPilot Multirotor (ArduCopter)
+----
+Start Mock: Generic Vehicle
+----
+Start Mock: Ground/General (ArduRover)
+----
+Start Mock: PX4 Vehicle
+----
+Start Mock: Sub/Boat (ArduSub)
+----
+Station Mode
+----
+Stop Logging
+----
+Stop One MockLink
+----
+Stop one mock link
+----
+Stream Rates (ArduPilot Only)
+----
+Support for Fly View custom actions has changed. The location of the files has changed. You will need to setup up your settings again from Fly View Settings.
+----
+Support for Joystick custom actions has changed. The format and location of the files has changed. New setting is available from Fly View Settings. File format is documented in user guide. Delete the %1 file to disable this warning
+----
+Surface vessel, boat, ship
+----
+Surftrak
+----
+Survey-in Active
+----
+System %1
+----
+System Wide Tile Cache
+----
+T
+----
+TCP Link Error
+----
+TCP URL
+----
+TCP-MPEG2 Video Stream
+----
+Takeoff from ground and start the current mission for selected vehicles.
+----
+Takeover NOT allowed
+----
+Takeover allowed
+----
+Telemetry Display
+----
+Telemetry Logs (*.%1)
+----
+Terrain Frame
+----
+The Offline Map Cache database has been upgraded. Your old map cache sets have been reset.
+----
+The altitude mode can differ for each individual item.
+----
+The following parameters from the loaded file differ from what is currently set on the Vehicle. Click 'Ok' to update them on the Vehicle.
+----
+The following speed values are used to calculate total mission time. They do not affect the flight speed for the mission.
+----
+The latency between a pitch step input and the achieved setpoint (inverse to a P gain)
+----
+The latency between a roll step input and the achieved setpoint (inverse to a P gain)
+----
+The log file '%1' is corrupt or empty.
+----
+The plan being worked on in the Plan View is not from the current vehicle. What would you like to do with that plan?
+----
+The signing key should only be sent to the vehicle over a secure link.
+----
+The vehicle associated with the plan in the Plan View is no longer available. What would you like to do with that plan?
+----
+There are no differences between the file loaded and the current settings on the Vehicle.
+----
+There are still active connections to vehicles. Are you sure you want to exit?
+----
+There is a newer version of %1 available. You can download it from %2.
+----
+Thermal
+----
+Thermal View Mode
+----
+This GCS
+----
+This GCS Mavlink System ID: 
+----
+This Plan was created for a different firmware or vehicle type than the firmware/vehicle type of vehicle you are uploading to. This can lead to errors or incorrect behavior. It is recommended to recreate the Plan for the correct firmware/vehicle type.
+
+Click 'Ok' to upload the Plan anyway.
+----
+This will automatically spin individual motors at 15% thrust.<br /><br />
+<b>Warning: Only proceed if you removed all propellers</b>.<br />
+%1
+<br />
+The procedure is as following:<br />
+- After confirming, the first motor starts to spin for 0.5 seconds.<br />
+- Then click on the motor that was spinning.<br />
+- The above steps are repeated for all motors.<br />
+- The motor output functions will automatically be reassigned by the selected order.<br />
+<br />
+Do you wish to proceed?
+----
+This will delete all tiles INCLUDING the tile sets you have created yourself.
+
+Is this really what you want?
+----
+Throttle
+----
+Thrust curve <b><a href="https://docs.px4.io/main/en/config_mc/pid_tuning_guide_multicopter.html#thrust-curve">?</a></b>
+----
+Tile Cache
+----
+Tile Count:
+----
+Tile Sets (*.%1)
+----
+Tilt 90
+----
+Tiltrotor VTOL
+----
+Time Constant (FW_P_TC)
+----
+Time constant (FW_R_TC)
+----
+Time lapse capture not supported by this camera
+----
+Timeout while waiting for bytes written
+----
+Timeout while waiting for ready read
+----
+Timeout:
+----
+To level the horizon you need to place the vehicle in its level flight position and leave still.
+----
+Too many tiles
+----
+Total message loss
+----
+Total messages received
+----
+Total messages sent (computed)
+----
+Touch Area display toggled
+----
+Trigger Dist
+----
+Tuning Setup is used to tune the flight controllers.
+----
+Turn off Advanced Mode?
+----
+Two-rotor VTOL using control surfaces in vertical operation in addition. Tailsitter
+----
+UDP h.264 Video Stream
+----
+UDP h.265 Video Stream
+----
+URL with {x} {y} {z} or {zoom} substitutions
+----
+UTM Service Editor
+----
+UTM projection is not in supported format. Must be PROJCS["WGS_1984_UTM_Zone_##N/S
+----
+UTM-Adapter
+----
+Unable to find LineString node in KML
+----
+Unable to find Polygon node in KML
+----
+Unable to open file: %1 error: $%2
+----
+Unable to open file: '%1', error: %2
+----
+Unable to open log file: '%1', error: %2
+----
+Unable to parse KML file: %1 error: %2 line: %3
+----
+Unable to parse json file: %1 error: %2 offset: %3
+----
+Unable to put radio into command mode +++
+----
+Unable to reboot radio (ready read)
+----
+Unable to reopen log file %1: %2
+----
+Unable to save telemetry log. Application save directory is not set.
+----
+Unable to save telemetry log. Telemetry save directory "%1" does not exist.
+----
+Unable to seek to new position
+----
+Unable to send command: %1.
+----
+Unable to start takeoff: Vehicle failed to arm.
+----
+Unable to start takeoff: Vehicle failed to change to Takeoff mode.
+----
+Unable to start takeoff: Vehicle is already in the air.
+----
+Unable to start takeoff: Vehicle not changing to %1 flight mode.
+----
+Unable to start takeoff: Vehicle rejected arming.
+----
+Unabled to find writable download location. Tried downloads and temp directory.
+----
+Unexpected Error
+----
+Unique:
+----
+Units
+----
+Universal Transverse Mercator
+----
+Unsupported file type. Only .%1 and .%2 are supported.
+----
+Unsupported open mode
+----
+Upload Selected Log Files
+----
+Upwards
+----
+Use Azimuth instead of local yaw on top toolbar indicator
+----
+Use GCS position instead
+----
+Use MAV_CMD_CONDITION_GATE for pattern generation
+----
+Use current map position instead
+----
+Use loiter to altitude
+----
+Use manual tuning
+----
+Used to counteract the adverse yaw effect for fixed wings.
+----
+User ID
+----
+VTOL Fixedrotor
+----
+VTOL Tiltwing
+----
+VTOL reserved 5
+----
+VWorld
+----
+Value Editor
+----
+Value range
+----
+Value: 
+----
+Valuec requires a connected vehicle for setup.
+----
+Vehicle %1 
+----
+Vehicle Action
+----
+Vehicle Error
+----
+Vehicle GPS Status
+----
+Vehicle does not support guided rotate
+----
+Vehicle has no Valid positon, please provide it
+----
+Vehicle reboot failed.
+----
+Vehicle reboot required after change
+----
+Velocity Controller
+----
+Vertical velocity (m/s)
+----
+Video Grid Lines
+----
+Video Screen Fit
+----
+Video Stream Disabled
+----
+Video decode priority
+----
+WARNING!        
+
+The auto-tuning procedure should be executed with caution and requires the vehicle to fly stable enough before attempting the procedure!         
+
+Before starting the auto-tuning process, make sure that:         
+1. You have read the auto-tuning guide and have followed the preliminary steps         
+2. The current control gains are good enough to stabilize the drone in presence of medium disturbances         
+3. You are ready to abort the auto-tuning sequence by moving the RC sticks, if anything unexpected happens.         
+
+Click Ok to start the auto-tuning process.
+
+----
+WARNING: Photo interval is below minimum interval (%1 secs) supported by camera.
+----
+WARNING: This will force arming of the vehicle bypassing any safety checks.
+----
+Waiting for previous operator control request
+----
+Waiting on previous response to same command.
+----
+Warning: a high responsiveness requires a vehicle with large thrust-to-weight ratio. The vehicle might lose altitude otherwise.
+----
+Would you like to load the default parameters for the frame?
+----
+Would you like to set the desired frame?
+----
+X (%1)
+----
+X/Y position control
+----
+Y (%1)
+----
+Yaw <br> Follow
+----
+Yaw <br> Lock
+----
+Yaw Behavior
+----
+Yaw axis rate controller I gain
+----
+Yaw axis rate controller P gain
+----
+Yaw follow
+----
+Yaw locked
+----
+Yaw position
+----
+Yes, Load default parameter set for %1
+----
+You are running %1 as root. You should not do this since it will cause other issues with %1.%1 will now exit.<br/><br/>
+----
+You have a mission edit in progress which has not been saved/sent. If you close you will lose changes. Are you sure you want to close?
+----
+You have pending parameter updates to a vehicle. If you close you will lose changes. Are you sure you want to close?
+----
+You must choose a board type.
+----
+You must close all connections prior to replaying a log.
+----
+You must select at least one log file to download.
+----
+Yuneec Mantis G
+----
+Z (%1)
+----
+Z/altitude control
+----
+Zero Trims
+----
+Zero-Conf
+----
+Zeroconf Register Error: %1
+----
+_activeVehicle(%1) _vehicleArmed(%2) guidedModeSupported(%3) _vehicleFlying(%4) _vehicleWasFlying(%5) _vehicleInRTLMode(%6) pauseVehicleSupported(%7) _vehiclePaused(%8) _flightMode(%9) _missionItemCount(%10) roiSupported(%11) orbitSupported(%12) _missionActive(%13) _hideROI(%14) _hideOrbit(%15)
+----
+battery %1 level low
+----
+directly
+----
+errno %1
+----
+fence breached
+----
+is difficult. Point the vehicle North before using it.
+----
+maximum altitude
+----
+minimum altitude
+----
+not battery
+----
+null
+----
+primary
+----
+prior to firmware upgrade.
+----
+results in zero diagonal and off-diagonal elements, so is only 
+----
+secondary
+----
+suitable for vehicles where the field is close to spherical. It is 
+----
+trirotor
+----
+useful for large vehicles where moving the vehicle to calibrate it 
+----

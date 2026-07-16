@@ -82,16 +82,16 @@ Item {
                 // 0. 私有地图服务设置
         SettingsGroupLayout {
             Layout.fillWidth: true
-            heading: qsTr("地图服务器")
+            heading: qsTr("Custom Map URL")
 
             LabelledFactTextField {
-                label: qsTr("IP 地址")
+                label: qsTr("Server URL")
                 fact: _customURLIPFact
                 textFieldPreferredWidth:    _largeTextFieldWidth
             }
 
             LabelledFactTextField {
-                label: qsTr("端口")
+                label: qsTr("Port")
                 fact: _customURLPortFact
                 textFieldPreferredWidth:    _largeTextFieldWidth
             }
@@ -104,7 +104,7 @@ Item {
             // [修改] 移除了 Provider 和 Type 的选择框
             // 只保留高程数据提供商选择
             LabelledComboBox {
-                label: qsTr("高程数据提供商")
+                label: qsTr("Elevation Provider")
                 model: _mapEngineManager.elevationProviderList
 
                 onActivated: (index) => { _elevationProviderFact.rawValue = comboBox.textAt(index) }
@@ -120,8 +120,8 @@ Item {
         // 2. 离线地图设置组 (保持原样)
         SettingsGroupLayout {
             Layout.fillWidth:   true
-            heading:            qsTr("离线地图")
-            headingDescription: qsTr("下载地图块数据供离线时使用")
+            heading:            qsTr("Offline Maps")
+            headingDescription: qsTr("Download map tiles for use when offline")
 
             Repeater {
                 model: QGroundControl.mapEngineManager.tileSets
@@ -134,15 +134,15 @@ Item {
             }
 
             LabelledButton {
-                label:      qsTr("添加新地图块组")
-                buttonText: qsTr("添加")
+                label:      qsTr("Add New Set")
+                buttonText: qsTr("Add")
                 enabled:    !_currentlyImportOrExporting
                 onClicked:  offlineMapEditorComponent.createObject(root).addNewSet()
             }
 
             LabelledButton {
-                label:      qsTr("导入地图块")
-                buttonText: qsTr("导入")
+                label:      qsTr("Import Map Tiles")
+                buttonText: qsTr("Import")
                 visible:    QGroundControl.corePlugin.options.showOfflineMapImport
                 enabled:    !_currentlyImportOrExporting
                 onClicked: {
@@ -152,8 +152,8 @@ Item {
             }
 
             LabelledButton {
-                label:      qsTr("导出地图块组")
-                buttonText: qsTr("导出")
+                label:      qsTr("Export Map Tiles")
+                buttonText: qsTr("Export")
                 visible:    QGroundControl.corePlugin.options.showOfflineMapExport
                 enabled:    !_currentlyImportOrExporting
                 onClicked:  exportDialogComponent.createObject(mainWindow).open()
@@ -165,7 +165,7 @@ Item {
 
                 QGCLabel {
                     Layout.fillWidth:   true
-                    text:               _mapEngineManager.importAction === QGCMapEngineManager.ImportAction.ActionExporting ? qsTr("正在导出") : qsTr("正在导入")
+                    text:               _mapEngineManager.importAction === QGCMapEngineManager.ImportAction.ActionExporting ? qsTr("Exporting") : qsTr("Importing")
                     font.bold:          true
                 }
                 ProgressBar {
@@ -184,7 +184,7 @@ Item {
         // 3. 缓存设置组 (保持原样)
         SettingsGroupLayout {
             Layout.fillWidth:   true
-            heading:            qsTr("地图块缓存")
+            heading:            qsTr("Tile Cache")
 
             LabelledFactTextField {
                 fact: _mapsSettings.maxCacheDiskSize
@@ -217,12 +217,12 @@ Item {
             id: exportDialogComponent
 
             QGCPopupDialog {
-                title:      qsTr("导出所选地图块组")
+                title:      qsTr("Export Selected Tile Sets")
                 buttons:    Dialog.Ok | Dialog.Cancel
 
                 onAccepted: {
                     close()
-                    fileDialog.title = qsTr("导出地图块")
+                    fileDialog.title = qsTr("Export Tiles")
                     fileDialog.openForSave()
                 }
 
@@ -246,12 +246,12 @@ Item {
             id: importDialogComponent
 
             QGCPopupDialog {
-                title:      qsTr("导入地图块组")
+                title:      qsTr("Import TileSets")
                 buttons:    Dialog.Ok | Dialog.Cancel
 
                 onAccepted: {
                     close()
-                    fileDialog.title = qsTr("导入地图块")
+                    fileDialog.title = qsTr("Import Tiles")
                     fileDialog.openForLoad()
                 }
 
@@ -259,12 +259,12 @@ Item {
                     spacing: ScreenTools.defaultFontPixelWidth / 2
 
                     QGCRadioButton {
-                        text:           qsTr("追加到既存地图块组")
+                        text:           qsTr("Append to existing sets")
                         checked:        !_mapEngineManager.importReplace
                         onClicked:      _mapEngineManager.importReplace = !checked
                     }
                     QGCRadioButton {
-                        text:           qsTr("替换既存地图块组")
+                        text:           qsTr("Replace existing sets")
                         checked:        _mapEngineManager.importReplace
                         onClicked:      _mapEngineManager.importReplace = checked
                     }
@@ -276,7 +276,7 @@ Item {
             id: errorDialogComponent
 
             QGCSimpleMessageDialog {
-                title:      qsTr("错误信息")
+                title:      qsTr("Error Message")
                 text:       _mapEngineManager.errorMessage
                 buttons:    Dialog.Close
             }

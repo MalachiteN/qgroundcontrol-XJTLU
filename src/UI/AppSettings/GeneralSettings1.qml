@@ -102,22 +102,22 @@ SettingsPage {
     // =========================================================
     SettingsGroupLayout {
         Layout.fillWidth:   true
-        heading:            qsTr("通用")
+        heading:            qsTr("General")
 
         QGCLabel {
             Layout.fillWidth: true
-            text: qsTr("语言：中文 ")
+            text: qsTr("Language: Chinese ")
         }
 
         LabelledFactComboBox {
-            label:      qsTr("配色方案")
+            label:      qsTr("Color Scheme")
             fact:       _appSettings.indoorPalette
             indexModel: false
             visible:    _appSettings.indoorPalette.visible
         }
 
         LabelledFactComboBox {
-            label:      qsTr("发送地面站位置")
+            label:      qsTr("Stream GCS Position")
             fact:       _appSettings.followTarget
             indexModel: false
             visible:    _appSettings.followTarget.visible
@@ -125,7 +125,7 @@ SettingsPage {
 
         FactCheckBoxSlider {
             Layout.fillWidth: true
-            text:           qsTr("静音（关闭所有音频输出）")
+            text:           qsTr("Mute all audio output")
             fact:           _audioMuted
             visible:        _audioMuted.visible
             property Fact _audioMuted: _appSettings.audioMuted
@@ -133,14 +133,14 @@ SettingsPage {
 
         FactCheckBoxSlider {
             Layout.fillWidth: true
-            text:       qsTr("Android：不保存到 SD 卡")
+            text:       qsTr("Android: Don't save to SD card")
             fact:       _appSettings.androidDontSaveToSDCard
             visible:    fact.visible
         }
 
         QGCCheckBoxSlider {
             Layout.fillWidth: true
-            text:       qsTr("下次启动时清除所有设置")
+            text:       qsTr("Clear all settings on next start")
             checked:    false
             onClicked: {
                 if (checked) {
@@ -158,7 +158,7 @@ SettingsPage {
 
             QGCLabel {
                 Layout.fillWidth:   true
-                text:               qsTr("界面缩放")
+                text:               qsTr("UI Scaling")
             }
 
             RowLayout {
@@ -203,22 +203,22 @@ SettingsPage {
                 Layout.fillWidth:   true
                 spacing:            0
 
-                QGCLabel { text: qsTr("应用加载/保存路径") }
+                QGCLabel { text: qsTr("Application Load/Save Path") }
                 QGCLabel {
                     Layout.fillWidth:   true
                     font.pointSize:     ScreenTools.smallFontPointSize
-                    text:               _appSavePath.rawValue === "" ? qsTr("<默认位置>") : _appSavePath.value
+                    text:               _appSavePath.rawValue === "" ? qsTr("<default location>") : _appSavePath.value
                     elide:              Text.ElideMiddle
                 }
             }
 
             QGCButton {
-                text:       qsTr("浏览…")
+                text:       qsTr("Browse")
                 onClicked:  savePathBrowseDialog.openForLoad()
 
                 QGCFileDialog {
                     id:                 savePathBrowseDialog
-                    title:              qsTr("选择文件保存/加载位置")
+                    title:              qsTr("Choose the location to save/load files")
                     folder:             _appSavePath.rawValue
                     selectFolder:       true
                     onAcceptedForLoad:  (file) => _appSavePath.rawValue = file
@@ -232,13 +232,13 @@ SettingsPage {
     // =========================================================
     SettingsGroupLayout {
         Layout.fillWidth:   true
-        heading:            qsTr("单位")
+        heading:            qsTr("Units")
         visible:            _units.visible
 
-        QGCLabel { Layout.fillWidth: true; text: qsTr("水平距离：米（m）") }
-        QGCLabel { Layout.fillWidth: true; text: qsTr("垂直距离：米（m）") }
-        QGCLabel { Layout.fillWidth: true; text: qsTr("面积：平方米（m²） ") }
-        QGCLabel { Layout.fillWidth: true; text: qsTr("温度：摄氏度（°C）") }
+        QGCLabel { Layout.fillWidth: true; text: qsTr("Horizontal Distance: m") }
+        QGCLabel { Layout.fillWidth: true; text: qsTr("Vertical Distance: m") }
+        QGCLabel { Layout.fillWidth: true; text: qsTr("Area: m²") }
+        QGCLabel { Layout.fillWidth: true; text: qsTr("Temperature: °C") }
 
         RowLayout {
             Layout.fillWidth: true
@@ -247,7 +247,7 @@ SettingsPage {
 
             QGCLabel {
                 Layout.preferredWidth: ScreenTools.defaultFontPixelWidth * 16
-                text: qsTr("速度单位")
+                text: qsTr("Speed Unit")
             }
 
             QGCComboBox {
@@ -271,7 +271,7 @@ SettingsPage {
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
             opacity: 0.75
-            text: qsTr("说明：距离/面积/温度为固定公制单位；速度仅支持 m/s 与 km/h。")
+            text: qsTr("Note: Distance/area/temperature are fixed to metric units; speed supports only m/s and km/h.")
         }
     }
 
@@ -280,7 +280,7 @@ SettingsPage {
     // =========================================================
     SettingsGroupLayout {
         Layout.fillWidth:   true
-        heading:            qsTr("品牌图片")
+        heading:            qsTr("Brand Image")
         visible:            _brandImageSettings.visible && !ScreenTools.isMobile
 
         RowLayout {
@@ -292,7 +292,7 @@ SettingsPage {
                 Layout.fillWidth:   true
                 spacing:            0
 
-                QGCLabel { Layout.fillWidth: true; text: qsTr("室内图片") }
+                QGCLabel { Layout.fillWidth: true; text: qsTr("Indoor Image") }
                 QGCLabel {
                     Layout.fillWidth:   true
                     font.pointSize:     ScreenTools.smallFontPointSize
@@ -303,12 +303,12 @@ SettingsPage {
             }
 
             QGCButton {
-                text:       qsTr("浏览…")
+                text:       qsTr("Browse")
                 onClicked:  userBrandImageIndoorBrowseDialog.openForLoad()
 
                 QGCFileDialog {
                     id:                 userBrandImageIndoorBrowseDialog
-                    title:              qsTr("选择自定义品牌图片文件")
+                    title:              qsTr("Choose custom brand image file")
                     folder:             _userBrandImageIndoor.rawValue.replace("file:///", "")
                     selectFolder:       false
                     onAcceptedForLoad:  (file) => _userBrandImageIndoor.rawValue = "file:///" + file
@@ -325,7 +325,7 @@ SettingsPage {
                 Layout.fillWidth:   true
                 spacing:            0
 
-                QGCLabel { Layout.fillWidth: true; text: qsTr("室外图片") }
+                QGCLabel { Layout.fillWidth: true; text: qsTr("Outdoor Image") }
                 QGCLabel {
                     Layout.fillWidth:   true
                     font.pointSize:     ScreenTools.smallFontPointSize
@@ -336,12 +336,12 @@ SettingsPage {
             }
 
             QGCButton {
-                text:       qsTr("浏览…")
+                text:       qsTr("Browse")
                 onClicked:  userBrandImageOutdoorBrowseDialog.openForLoad()
 
                 QGCFileDialog {
                     id:                 userBrandImageOutdoorBrowseDialog
-                    title:              qsTr("选择自定义品牌图片文件")
+                    title:              qsTr("Choose custom brand image file")
                     folder:             _userBrandImageOutdoor.rawValue.replace("file:///", "")
                     selectFolder:       false
                     onAcceptedForLoad:  (file) => _userBrandImageOutdoor.rawValue = "file:///" + file
@@ -350,8 +350,8 @@ SettingsPage {
         }
 
         LabelledButton {
-            label:      qsTr("重置图片")
-            buttonText: qsTr("重置")
+            label:      qsTr("Reset Images")
+            buttonText: qsTr("Reset")
             onClicked:  {
                 _userBrandImageIndoor.rawValue = ""
                 _userBrandImageOutdoor.rawValue = ""

@@ -22,65 +22,65 @@ Item {
         anchors.left:    parent.left
         columns: 3
 
-        Text { text: qsTr("Qt 平台：");              color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Qt Platform: ");              color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Qt.platform.os;                color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 10");                color: qgcPal.text; font.pointSize: 10;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 10");                color: qgcPal.text; font.pointSize: 10;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("默认字体宽度：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Default Font Width: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: _textMeasure.contentWidth;      color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 10.5");              color: qgcPal.text; font.pointSize: 10.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 10.5");              color: qgcPal.text; font.pointSize: 10.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("默认字体高度：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Default Font Height: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: _textMeasure.contentHeight;     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 11");                color: qgcPal.text; font.pointSize: 11;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 11");                color: qgcPal.text; font.pointSize: 11;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("默认字体像素大小：");      color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Default Font Pixel Size: ");      color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: _textMeasure.font.pointSize;    color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 11.5");              color: qgcPal.text; font.pointSize: 11.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 11.5");              color: qgcPal.text; font.pointSize: 11.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("默认字体点大小：");        color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Default Font Point Size: ");        color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: _textMeasure.font.pointSize;    color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 12");                color: qgcPal.text; font.pointSize: 12;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 12");                color: qgcPal.text; font.pointSize: 12;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("QML 桌面可用区域：");       color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("QML Desktop Available Area: ");       color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Screen.desktopAvailableWidth + " x " + Screen.desktopAvailableHeight; color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 12.5");              color: qgcPal.text; font.pointSize: 12.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 12.5");              color: qgcPal.text; font.pointSize: 12.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("QML 屏幕尺寸：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("QML Screen Size: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Screen.width + " x " + Screen.height; color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 13");                color: qgcPal.text; font.pointSize: 13;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 13");                color: qgcPal.text; font.pointSize: 13;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("QML 像素密度：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("QML Pixel Density: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Screen.pixelDensity.toFixed(4); color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 13.5");              color: qgcPal.text; font.pointSize: 13.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 13.5");              color: qgcPal.text; font.pointSize: 13.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("QML 像素比例：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("QML Pixel Ratio: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Screen.devicePixelRatio;        color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 14");                color: qgcPal.text; font.pointSize: 14;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 14");                color: qgcPal.text; font.pointSize: 14;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("默认点大小：");            color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Default Point Size: ");            color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: ScreenTools.defaultFontPointSize; color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 14.5");              color: qgcPal.text; font.pointSize: 14.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 14.5");              color: qgcPal.text; font.pointSize: 14.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("计算得到的字体高度：");     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Calculated Font Height: ");     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: ScreenTools.defaultFontPixelHeight; color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 15");                color: qgcPal.text; font.pointSize: 15;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 15");                color: qgcPal.text; font.pointSize: 15;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("计算得到的屏幕高度：");     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Calculated Screen Height: ");     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: (Screen.height / Screen.pixelDensity * Screen.devicePixelRatio).toFixed(0); color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 15.5");              color: qgcPal.text; font.pointSize: 15.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 15.5");              color: qgcPal.text; font.pointSize: 15.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("计算得到的屏幕宽度：");     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Calculated Screen Width: ");     color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: (Screen.width / Screen.pixelDensity * Screen.devicePixelRatio).toFixed(0); color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 16");                color: qgcPal.text; font.pointSize: 16;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 16");                color: qgcPal.text; font.pointSize: 16;   font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("桌面可用宽度：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Desktop Available Width: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Screen.desktopAvailableWidth;   color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 16.5");              color: qgcPal.text; font.pointSize: 16.5; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 16.5");              color: qgcPal.text; font.pointSize: 16.5; font.family: ScreenTools.normalFontFamily }
 
-        Text { text: qsTr("桌面可用高度：");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Desktop Available Height: ");          color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
         Text { text: Screen.desktopAvailableHeight;  color: qgcPal.text; font.family: ScreenTools.normalFontFamily }
-        Text { text: qsTr("字号 17");                color: qgcPal.text; font.pointSize: 17;   font.family: ScreenTools.normalFontFamily }
+        Text { text: qsTr("Size 17");                color: qgcPal.text; font.pointSize: 17;   font.family: ScreenTools.normalFontFamily }
     }
 
     Rectangle {

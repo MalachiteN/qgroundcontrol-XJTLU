@@ -29,13 +29,13 @@ SettingsPage {
 
     SettingsGroupLayout {
         Layout.fillWidth:   true
-        heading:            qsTr("视频源")
-        headingDescription: _videoAutoStreamConfig ? qsTr("MAVLink 相机视频流已自动配置") : ""
+        heading:            qsTr("Video Source")
+        headingDescription: _videoAutoStreamConfig ? qsTr("Mavlink camera stream is automatically configured") : ""
         enabled:            !_videoAutoStreamConfig
 
         LabelledFactComboBox {
             Layout.fillWidth:   true
-            label:              qsTr("来源")
+            label:              qsTr("Source")
             indexModel:         false
             fact:               _videoSettings.videoSource
             visible:            fact.visible
@@ -44,14 +44,14 @@ SettingsPage {
 
     SettingsGroupLayout {
         Layout.fillWidth:   true
-        heading:            qsTr("连接参数")
+        heading:            qsTr("Connection")
         // 修正：把 | 改成 ||
         visible:            !_videoSourceDisabled && !_videoAutoStreamConfig && (_isTCP || _isRTSP || _requiresUDPUrl)
 
         LabelledFactTextField {
             Layout.fillWidth:           true
             textFieldPreferredWidth:    _urlFieldWidth
-            label:                      qsTr("RTSP 地址")
+            label:                      qsTr("RTSP URL")
             fact:                       _videoSettings.rtspUrl
             visible:                    _isRTSP && _videoSettings.rtspUrl.visible
         }
@@ -61,7 +61,7 @@ SettingsPage {
             visible:            _isRTSP && _videoSettings.rtspUrl.visible
 
             QGCLabel {
-                text:           qsTr("无人船")
+                text:           qsTr("USV")
                 font.pointSize: ScreenTools.defaultFontPointSize
                 Layout.alignment: Qt.AlignVCenter
             }
@@ -69,27 +69,27 @@ SettingsPage {
             QGCComboBox {
                 id:             boatSelector
                 Layout.fillWidth: true
-                model:          [qsTr("点击刷新...")]
+                model:          [qsTr("Click to refresh...")]
 
                 onActivated: (index) => {
                     var selected = textAt(index)
-                    if (selected === qsTr("点击刷新...")) {
+                    if (selected === qsTr("Click to refresh...")) {
                         fetchBoatList()
-                    } else if (selected !== qsTr("无在线无人船") && selected !== qsTr("连接失败") && selected !== qsTr("请先配置地面站连接") && selected !== qsTr("解析失败")) {
+                    } else if (selected !== qsTr("No USVs online") && selected !== qsTr("Connection failed") && selected !== qsTr("Please configure ground station connection first") && selected !== qsTr("Parse failed")) {
                         setRtspUrlForBoat(selected)
                     }
                 }
             }
 
             QGCButton {
-                text:       qsTr("刷新")
+                text:       qsTr("Refresh")
                 onClicked:  fetchBoatList()
             }
         }
 
         LabelledFactTextField {
             Layout.fillWidth:           true
-            label:                      qsTr("TCP 地址")
+            label:                      qsTr("TCP URL")
             textFieldPreferredWidth:    _urlFieldWidth
             fact:                       _videoSettings.tcpUrl
             visible:                    _isTCP && _videoSettings.tcpUrl.visible
@@ -98,7 +98,7 @@ SettingsPage {
         LabelledFactTextField {
             Layout.fillWidth:           true
             textFieldPreferredWidth:    _urlFieldWidth
-            label:                      qsTr("UDP 地址")
+            label:                      qsTr("UDP URL")
             fact:                       _videoSettings.udpUrl
             visible:                    _requiresUDPUrl && _videoSettings.udpUrl.visible
         }
@@ -106,12 +106,12 @@ SettingsPage {
 
     SettingsGroupLayout {
         Layout.fillWidth:   true
-        heading:            qsTr("视频设置")
+        heading:            qsTr("Settings")
         visible:            !_videoSourceDisabled
 
         LabelledFactTextField {
             Layout.fillWidth:   true
-            label:              qsTr("宽高比")
+            label:              qsTr("Aspect Ratio")
             fact:               _videoSettings.aspectRatio
             visible:            !_videoAutoStreamConfig && _isStreamSource && _videoSettings.aspectRatio.visible
         }
@@ -120,21 +120,21 @@ SettingsPage {
         // 如果你们业务是“未解锁/未上电”，可再改词
         FactCheckBoxSlider {
             Layout.fillWidth:   true
-            text:               qsTr("未启用控制时停止录制")
+            text:               qsTr("Stop recording when disarmed")
             fact:               _videoSettings.disableWhenDisarmed
             visible:            !_videoAutoStreamConfig && _isStreamSource && fact.visible
         }
 
         FactCheckBoxSlider {
             Layout.fillWidth:   true
-            text:               qsTr("低延迟模式")
+            text:               qsTr("Low Latency Mode")
             fact:               _videoSettings.lowLatencyMode
             visible:            !_videoAutoStreamConfig && _isStreamSource && fact.visible && _isGST
         }
 
         LabelledFactComboBox {
             Layout.fillWidth:   true
-            label:              qsTr("强制视频解码器")
+            label:              qsTr("Force Video Decoder")
             fact:               _videoSettings.forceVideoDecoder
             visible:            fact.visible
             indexModel:         false
@@ -143,25 +143,25 @@ SettingsPage {
 
     SettingsGroupLayout {
         Layout.fillWidth: true
-        heading:          qsTr("本地视频存储")
+        heading:          qsTr("Local Video Storage")
 
         LabelledFactComboBox {
             Layout.fillWidth:   true
-            label:              qsTr("录制文件格式")
+            label:              qsTr("Record File Format")
             fact:               _videoSettings.recordingFormat
             visible:            _videoSettings.recordingFormat.visible
         }
 
         FactCheckBoxSlider {
             Layout.fillWidth:   true
-            text:               qsTr("自动删除已保存录像")
+            text:               qsTr("Auto-Delete Saved Recordings")
             fact:               _videoSettings.enableStorageLimit
             visible:            fact.visible
         }
 
         LabelledFactTextField {
             Layout.fillWidth:   true
-            label:              qsTr("最大占用空间")
+            label:              qsTr("Max Storage Usage")
             fact:               _videoSettings.maxVideoSize
             visible:            fact.visible
             enabled:            _videoSettings.enableStorageLimit.rawValue
@@ -170,7 +170,7 @@ SettingsPage {
 
     function fetchBoatList() {
         if (!_relayServerHost || !_groundStationName) {
-            boatSelector.model = [qsTr("请先配置地面站连接")]
+            boatSelector.model = [qsTr("Please configure ground station connection first")]
             return
         }
 
@@ -187,7 +187,7 @@ SettingsPage {
                         var comboModel = []
 
                         if (boats.length === 0) {
-                            comboModel.push(qsTr("无在线无人船"))
+                            comboModel.push(qsTr("No USVs online"))
                         } else {
                             for (var i = 0; i < boats.length; i++) {
                                 comboModel.push(boats[i])
@@ -197,11 +197,11 @@ SettingsPage {
                         boatSelector.model = comboModel
                     } catch (e) {
                         console.error("JSON Parse error:", e)
-                        boatSelector.model = [qsTr("解析失败")]
+                        boatSelector.model = [qsTr("Parse failed")]
                     }
                 } else {
                     console.error("Boat list fetch failed:", xhr.status)
-                    boatSelector.model = [qsTr("连接失败")]
+                    boatSelector.model = [qsTr("Connection failed")]
                 }
             }
         }

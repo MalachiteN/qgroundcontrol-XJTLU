@@ -64,8 +64,8 @@ Rectangle {
         id:         emptyEmailDialog
         visible:    false
         buttons:    MessageDialog.Close
-        title:      qsTr("日志记录")
-        text:       qsTr("上传日志前请先填写邮箱地址。")
+        title:      qsTr("Log Record")
+        text:       qsTr("Please fill in the email address before uploading the log.")
     }
 
     QGCFlickable {
@@ -92,7 +92,7 @@ Rectangle {
                 visible:            _showMavlinkLog && _isPX4
                 QGCLabel {
                     id:         mavlogLabel
-                    text:       qsTr("MAVLink 2.0 日志记录（仅 PX4）")
+                    text:       qsTr("MAVLink 2.0 Log Record (PX4 only)")
                     font.bold:  true
                 }
             }
@@ -118,12 +118,12 @@ Rectangle {
 
                         QGCLabel {
                             width: _labelWidth
-                            text: qsTr("手动开始/停止：")
+                            text: qsTr("Manual Start/Stop:")
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
                         QGCButton {
-                            text:       qsTr("开始记录")
+                            text:       qsTr("Start Record")
                             width:      (_valueWidth * 0.5) - (ScreenTools.defaultFontPixelWidth * 0.5)
                             enabled:    !_mavlinkLogManager.logRunning && _mavlinkLogManager.canStartLog && !_disableDataPersistence
                             onClicked:  _mavlinkLogManager.startLogging()
@@ -131,7 +131,7 @@ Rectangle {
                         }
 
                         QGCButton {
-                            text:       qsTr("停止记录")
+                            text:       qsTr("Stop Record")
                             width:      (_valueWidth * 0.5) - (ScreenTools.defaultFontPixelWidth * 0.5)
                             enabled:    _mavlinkLogManager.logRunning && !_disableDataPersistence
                             onClicked:  _mavlinkLogManager.stopLogging()
@@ -142,7 +142,7 @@ Rectangle {
                     //-----------------------------------------------------------------
                     //-- Auto log
                     QGCCheckBox {
-                        text:       qsTr("启用自动记录（设备启用时）")
+                        text:       qsTr("Enable auto record (when vehicle is armed)")
                         checked:    _mavlinkLogManager.enableAutoStart
                         enabled:    !_disableDataPersistence
                         onClicked:  _mavlinkLogManager.enableAutoStart = checked
@@ -160,7 +160,7 @@ Rectangle {
                 visible:            _showMavlinkLog && _isPX4
                 QGCLabel {
                     id:         logLabel
-                    text:       qsTr("MAVLink 2.0 日志上传（仅 PX4）")
+                    text:       qsTr("MAVLink 2.0 Log Upload (PX4 only)")
                     font.bold:  true
                 }
             }
@@ -183,7 +183,7 @@ Rectangle {
                         QGCLabel {
                             width: _labelWidth
                             anchors.baseline: emailField.baseline
-                            text: qsTr("上传邮箱：")
+                            text: qsTr("Upload Email:")
                         }
                         QGCTextField {
                             id:         emailField
@@ -201,7 +201,7 @@ Rectangle {
                         QGCLabel {
                             width: _labelWidth
                             anchors.baseline: descField.baseline
-                            text: qsTr("默认描述：")
+                            text: qsTr("Default Description:")
                         }
                         QGCTextField {
                             id:         descField
@@ -218,7 +218,7 @@ Rectangle {
                         QGCLabel {
                             width: _labelWidth
                             anchors.baseline: urlField.baseline
-                            text: qsTr("默认上传地址：")
+                            text: qsTr("Default Upload URL:")
                         }
                         QGCTextField {
                             id:         urlField
@@ -236,7 +236,7 @@ Rectangle {
                         QGCLabel {
                             width: _labelWidth
                             anchors.baseline: videoUrlField.baseline
-                            text: qsTr("视频地址：")
+                            text: qsTr("Video URL:")
                         }
                         QGCTextField {
                             id:         videoUrlField
@@ -253,7 +253,7 @@ Rectangle {
                         QGCLabel {
                             width: _labelWidth
                             anchors.baseline: windCombo.baseline
-                            text: qsTr("风力：")
+                            text: qsTr("Wind:")
                         }
                         QGCComboBox {
                             id:         windCombo
@@ -262,11 +262,11 @@ Rectangle {
                             textRole:   "text"
                             model: ListModel {
                                 id: windItems
-                                ListElement { text: qsTr("请选择"); value: -1 }
-                                ListElement { text: qsTr("无风"); value: 0 }
-                                ListElement { text: qsTr("微风"); value: 5 }
-                                ListElement { text: qsTr("大风"); value: 8 }
-                                ListElement { text: qsTr("暴风"); value: 10 }
+                                ListElement { text: qsTr("Please select"); value: -1 }
+                                ListElement { text: qsTr("No wind"); value: 0 }
+                                ListElement { text: qsTr("Breeze"); value: 5 }
+                                ListElement { text: qsTr("Strong wind"); value: 8 }
+                                ListElement { text: qsTr("Storm"); value: 10 }
                             }
                             onActivated: (index) => {
                                 saveItems()
@@ -288,7 +288,7 @@ Rectangle {
                         QGCLabel {
                             width: _labelWidth
                             anchors.baseline: ratingCombo.baseline
-                            text: qsTr("任务评价：")
+                            text: qsTr("Flight Rating:")
                         }
                         QGCComboBox {
                             id:         ratingCombo
@@ -297,12 +297,12 @@ Rectangle {
                             textRole:   "text"
                             model: ListModel {
                                 id: ratingItems
-                                ListElement { text: qsTr("请选择"); value: "notset" }
-                                ListElement { text: qsTr("严重故障（操作原因）"); value: "crash_pilot" }
-                                ListElement { text: qsTr("严重故障（软件/硬件原因）"); value: "crash_sw_hw" }
-                                ListElement { text: qsTr("不满意"); value: "unsatisfactory" }
-                                ListElement { text: qsTr("良好"); value: "good" }
-                                ListElement { text: qsTr("优秀"); value: "great" }
+                                ListElement { text: qsTr("Please select"); value: "notset" }
+                                ListElement { text: qsTr("Crash (pilot error)"); value: "crash_pilot" }
+                                ListElement { text: qsTr("Crash (software/hardware failure)"); value: "crash_sw_hw" }
+                                ListElement { text: qsTr("Unsatisfactory"); value: "unsatisfactory" }
+                                ListElement { text: qsTr("Good"); value: "good" }
+                                ListElement { text: qsTr("Great"); value: "great" }
                             }
                             onActivated: (index) => {
                                 saveItems()
@@ -323,7 +323,7 @@ Rectangle {
                         spacing: ScreenTools.defaultFontPixelWidth
                         QGCLabel {
                             width: _labelWidth
-                            text: qsTr("补充说明：")
+                            text: qsTr("Feedback:")
                         }
                         TextArea {
                             id:                 feedbackTextArea
@@ -338,7 +338,7 @@ Rectangle {
                     }
 
                     QGCCheckBox {
-                        text:       qsTr("允许公开该日志")
+                        text:       qsTr("Make this log public")
                         checked:    _mavlinkLogManager.publicLog
                         enabled:    !_disableDataPersistence
                         onClicked:  _mavlinkLogManager.publicLog = checked
@@ -346,7 +346,7 @@ Rectangle {
 
                     QGCCheckBox {
                         id:         autoUploadCheck
-                        text:       qsTr("启用自动上传日志")
+                        text:       qsTr("Enable auto upload")
                         checked:    _mavlinkLogManager.enableAutoUpload
                         enabled:    !_disableDataPersistence
                         onClicked: {
@@ -357,7 +357,7 @@ Rectangle {
                     }
 
                     QGCCheckBox {
-                        text:       qsTr("上传后删除日志文件")
+                        text:       qsTr("Delete log file after upload")
                         checked:    _mavlinkLogManager.deleteAfterUpload
                         enabled:    autoUploadCheck.checked && !_disableDataPersistence
                         onClicked:  _mavlinkLogManager.deleteAfterUpload = checked
@@ -375,7 +375,7 @@ Rectangle {
                 visible:            _showMavlinkLog
                 QGCLabel {
                     id:         logFilesLabel
-                    text:       qsTr("已保存的日志文件")
+                    text:       qsTr("Saved Log Files")
                     font.bold:  true
                 }
             }
@@ -446,7 +446,7 @@ Rectangle {
                                     }
 
                                     QGCLabel {
-                                        text:       qsTr("已上传")
+                                        text:       qsTr("Uploaded")
                                         visible:    object.uploaded
                                         width:      ScreenTools.defaultFontPixelWidth * 20
                                         horizontalAlignment: Text.AlignRight
@@ -472,7 +472,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
 
                         QGCButton {
-                            text:      qsTr("全选")
+                            text:      qsTr("Select All")
                             enabled:   !_mavlinkLogManager.uploading && !_mavlinkLogManager.logRunning
                             onClicked: {
                                 for (var i = 0; i < _mavlinkLogManager.logFiles.count; i++) {
@@ -482,7 +482,7 @@ Rectangle {
                         }
 
                         QGCButton {
-                            text:      qsTr("全不选")
+                            text:      qsTr("Select None")
                             enabled:   !_mavlinkLogManager.uploading && !_mavlinkLogManager.logRunning
                             onClicked: {
                                 for (var i = 0; i < _mavlinkLogManager.logFiles.count; i++) {
@@ -492,7 +492,7 @@ Rectangle {
                         }
 
                         QGCButton {
-                            text:      qsTr("删除所选")
+                            text:      qsTr("Delete Selected")
                             enabled:   _selectedCount > 0 && !_mavlinkLogManager.uploading && !_mavlinkLogManager.logRunning
                             onClicked: deleteDialog.open()
 
@@ -500,8 +500,8 @@ Rectangle {
                                 id:      deleteDialog
                                 visible: false
                                 buttons: MessageDialog.Yes | MessageDialog.No
-                                title:   qsTr("删除日志文件")
-                                text:    qsTr("确认删除所选日志文件？")
+                                title:   qsTr("Delete Log Files")
+                                text:    qsTr("Are you sure you want to delete the selected log files?")
                                 onButtonClicked: function (button, role) {
                                     if (button === MessageDialog.Yes) _mavlinkLogManager.deleteLog()
                                 }
@@ -509,7 +509,7 @@ Rectangle {
                         }
 
                         QGCButton {
-                            text:      qsTr("上传所选")
+                            text:      qsTr("Upload Selected")
                             enabled:   _selectedCount > 0 && !_mavlinkLogManager.uploading && !_mavlinkLogManager.logRunning && !_uploadedSelected
                             visible:   !_mavlinkLogManager.uploading
                             onClicked: {
@@ -524,8 +524,8 @@ Rectangle {
                                 id:      uploadDialog
                                 visible: false
                                 buttons: MessageDialog.Yes | MessageDialog.No
-                                title:   qsTr("上传日志文件")
-                                text:    qsTr("确认上传所选日志文件？")
+                                title:   qsTr("Upload Log Files")
+                                text:    qsTr("Are you sure you want to upload the selected log files?")
                                 onButtonClicked: function (button, role) {
                                     if (button === MessageDialog.Yes) _mavlinkLogManager.uploadLog()
                                 }
@@ -533,7 +533,7 @@ Rectangle {
                         }
 
                         QGCButton {
-                            text:      qsTr("取消上传")
+                            text:      qsTr("Cancel Upload")
                             enabled:   _mavlinkLogManager.uploading && !_mavlinkLogManager.logRunning
                             visible:   _mavlinkLogManager.uploading
                             onClicked: cancelDialog.open()
@@ -542,8 +542,8 @@ Rectangle {
                                 id:      cancelDialog
                                 visible: false
                                 buttons: MessageDialog.Yes | MessageDialog.No
-                                title:   qsTr("取消上传")
-                                text:    qsTr("确认取消上传过程？")
+                                title:   qsTr("Cancel Upload")
+                                text:    qsTr("Are you sure you want to cancel the upload?")
                                 onButtonClicked: function (button, role) {
                                     if (button === MessageDialog.Yes) _mavlinkLogManager.cancelUpload()
                                 }

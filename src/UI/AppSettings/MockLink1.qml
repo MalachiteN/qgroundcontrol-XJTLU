@@ -28,24 +28,24 @@ Rectangle {
 
             QGCCheckBox {
                 id:     sendStatusText
-                text:   qsTr("发送状态信息 + 语音播报")
+                text:   qsTr("Send status text + voice broadcast")
             }
 
             QGCButton {
-                text:               qsTr("启动模拟：PX4 载具")
+                text:               qsTr("Start Mock: PX4 Vehicle")
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.startPX4MockLink(sendStatusText.checked)
             }
 
             QGCButton {
-                text:               qsTr("启动模拟：ArduPilot 多旋翼（ArduCopter）")
+                text:               qsTr("Start Mock: ArduPilot Multirotor (ArduCopter)")
                 visible:            QGroundControl.hasAPMSupport
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.startAPMArduCopterMockLink(sendStatusText.checked)
             }
 
             QGCButton {
-                text:               qsTr("启动模拟：ArduPilot 固定翼（ArduPlane）")
+                text:               qsTr("Start Mock: ArduPilot Fixed Wing (ArduPlane)")
                 visible:            QGroundControl.hasAPMSupport
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.startAPMArduPlaneMockLink(sendStatusText.checked)
@@ -53,7 +53,7 @@ Rectangle {
 
             // 船/水下更相关：可把“Sub”文案改成“水下/船用（ArduSub）”
             QGCButton {
-                text:               qsTr("启动模拟：水下/船用（ArduSub）")
+                text:               qsTr("Start Mock: Sub/Boat (ArduSub)")
                 visible:            QGroundControl.hasAPMSupport
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.startAPMArduSubMockLink(sendStatusText.checked)
@@ -61,20 +61,20 @@ Rectangle {
 
             // Rover 对船未必准确，但更接近“地面/无人车/通用运动平台”
             QGCButton {
-                text:               qsTr("启动模拟：地面/通用平台（ArduRover）")
+                text:               qsTr("Start Mock: Ground/General (ArduRover)")
                 visible:            QGroundControl.hasAPMSupport
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.startAPMArduRoverMockLink(sendStatusText.checked)
             }
 
             QGCButton {
-                text:               qsTr("启动模拟：通用载具")
+                text:               qsTr("Start Mock: Generic Vehicle")
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.startGenericMockLink(sendStatusText.checked)
             }
 
             QGCButton {
-                text:               qsTr("停止一个模拟连接")
+                text:               qsTr("Stop one mock link")
                 Layout.fillWidth:   true
                 onClicked:          QGroundControl.stopOneMockLink()
             }

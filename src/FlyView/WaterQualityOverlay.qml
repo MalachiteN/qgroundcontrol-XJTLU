@@ -46,7 +46,7 @@ Item {
         RowLayout {
             Layout.fillWidth: true
             QGCLabel { 
-                text: qsTr("选择无人船")
+                text: qsTr("Select USV")
                 font.pointSize: ScreenTools.smallFontPointSize
                 Layout.alignment: Qt.AlignVCenter
             }
@@ -54,11 +54,11 @@ Item {
             QGCComboBox {
                 id: boatSelector
                 Layout.fillWidth: true
-                model: ["点击刷新..."]
+                model: [qsTr("Click to refresh...")]
                 
                 onActivated: (index) => {
                     var selected = textAt(index)
-                    if (selected === "点击刷新...") {
+                    if (selected === qsTr("Click to refresh...")) {
                         fetchBoatList()
                     } else {
                         connectToBoat(selected)
@@ -69,7 +69,7 @@ Item {
             }
 
             QGCButton {
-                text: "刷新"
+                text: qsTr("Refresh")
                 onClicked: fetchBoatList()
             }
         }
@@ -94,7 +94,7 @@ Item {
                 Layout.columnSpan:  2
                 Layout.fillWidth:   true
                 horizontalAlignment: Text.AlignHCenter
-                text:               socket.status === WebSocket.Open ? qsTr("等待数据...") : qsTr("未连接")
+                text:               socket.status === WebSocket.Open ? qsTr("Waiting for data...") : qsTr("Disconnected")
                 font.pointSize:     ScreenTools.smallFontPointSize
                 opacity:            0.6
             }
@@ -137,12 +137,12 @@ Item {
             Layout.alignment: Qt.AlignHCenter
             font.pointSize: ScreenTools.smallFontPointSize * 0.8
             text: {
-                var statusStr = "Unknown"
-                if (socket.status == WebSocket.Connecting) statusStr = "Connecting..."
-                else if (socket.status == WebSocket.Open) statusStr = "Online"
-                else if (socket.status == WebSocket.Closing) statusStr = "Closing..."
-                else if (socket.status == WebSocket.Closed) statusStr = "Offline"
-                else if (socket.status == WebSocket.Error) statusStr = "Error"
+                var statusStr = qsTr("Unknown")
+                if (socket.status == WebSocket.Connecting) statusStr = qsTr("Connecting...")
+                else if (socket.status == WebSocket.Open) statusStr = qsTr("Online")
+                else if (socket.status == WebSocket.Closing) statusStr = qsTr("Closing...")
+                else if (socket.status == WebSocket.Closed) statusStr = qsTr("Offline")
+                else if (socket.status == WebSocket.Error) statusStr = qsTr("Error")
                 return qsTr("Station: %1 | %2").arg(_root.stationName).arg(statusStr)
             }
             opacity: 0.6
@@ -165,7 +165,7 @@ Item {
                         var comboModel = []
                         
                         if (boats.length === 0) {
-                            comboModel.push("无在线无人船")
+                            comboModel.push(qsTr("No Boats"))
                         } else {
                             for (var i = 0; i < boats.length; i++) {
                                 comboModel.push(boats[i])
@@ -184,7 +184,7 @@ Item {
                     }
                 } else {
                     console.error("Boat list fetch failed:", xhr.status)
-                    boatSelector.model = ["连接失败"]
+                    boatSelector.model = [qsTr("Connection failed")]
                 }
             }
         }
@@ -193,7 +193,7 @@ Item {
     }
 
     function connectToBoat(boatName) {
-        if (boatName === "无在线无人船" || boatName === "点击刷新..." || boatName === "连接失败") return
+        if (boatName === qsTr("No Boats") || boatName === qsTr("Click to refresh...") || boatName === qsTr("Connection failed")) return
         
         if (currentBoatName !== boatName) {
             currentBoatName = boatName

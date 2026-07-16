@@ -60,19 +60,19 @@ Item {
             spacing:            ScreenTools.defaultFontPixelHeight / 4
 
             QGCLabel {
-                text: "PH值: " + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watPH.valueString : "0")
+                text: qsTr("PH: ") + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watPH.valueString : "0")
                 color: "white"
             }
             QGCLabel {
-                text: "水温: " + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watTemp.valueString : "0")
+                text: qsTr("Water Temp: ") + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watTemp.valueString : "0")
                 color: "white"
             }
             QGCLabel {
-                text: "浊度: " + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watTurb.valueString : "0")
+                text: qsTr("Turbidity: ") + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watTurb.valueString : "0")
                 color: "white"
             }
             QGCLabel {
-                text: "电导率: " + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watCond.valueString : "0")
+                text: qsTr("Conductivity: ") + (waterQualityDisplay.subInfo ? waterQualityDisplay.subInfo.watCond.valueString : "0")
                 color: "white"
             }
         }

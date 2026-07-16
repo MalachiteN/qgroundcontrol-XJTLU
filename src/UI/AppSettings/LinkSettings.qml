@@ -100,26 +100,26 @@ SettingsPage {
     }
 
     SettingsGroupLayout {
-        heading: qsTr("地面站连接")
+        heading: qsTr("Ground Station Connection")
 
         LabelledFactTextField {
-            label: qsTr("地面站名称")
+            label: qsTr("Ground Station Name")
             fact: _autoConnectSettings.groundStationName
         }
 
         LabelledFactTextField {
-            label: qsTr("服务器地址")
+            label: qsTr("Server Address")
             fact: _autoConnectSettings.groundStationStatusHost
         }
 
         LabelledFactTextField {
-            label: qsTr("服务器端口")
+            label: qsTr("Server Port")
             fact: _autoConnectSettings.groundStationStatusPort
         }
 
         LabelledButton {
-            label: qsTr("变更后手动创建连接")
-            buttonText: qsTr("确认")
+            label: qsTr("Manually create connection after change")
+            buttonText: qsTr("Confirm")
             onClicked: {
                 // 设置已通过Fact自动保存，立即触发创建连接
                 _linkManager.createGroundStationTcpLink()

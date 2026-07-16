@@ -14,18 +14,18 @@ SettingsPage {
 
     function _statusTextCN() {
         try {
-            if (!NTRIPManager) return qsTr("NTRIP 管理器不可用")
+            if (!NTRIPManager) return qsTr("NTRIP Manager not available")
             var s = (NTRIPManager.ntripStatus || "")
-            if (s.length === 0) return qsTr("未连接")
+            if (s.length === 0) return qsTr("Disconnected")
 
             var sl = s.toLowerCase()
-            if (sl.includes("connected"))   return qsTr("已连接")
-            if (sl.includes("connecting"))  return qsTr("连接中…")
-            if (sl.includes("disconnected"))return qsTr("未连接")
-            if (sl.includes("error") || sl.includes("failed")) return qsTr("连接失败：%1").arg(s)
+            if (sl.includes("connected"))   return qsTr("Connected")
+            if (sl.includes("connecting"))  return qsTr("Connecting...")
+            if (sl.includes("disconnected"))return qsTr("Disconnected")
+            if (sl.includes("error") || sl.includes("failed")) return qsTr("Connection failed: %1").arg(s)
             return s   // 兜底：显示原始状态
         } catch (e) {
-            return qsTr("未连接")
+            return qsTr("Disconnected")
         }
     }
 
@@ -44,12 +44,12 @@ SettingsPage {
 
     SettingsGroupLayout {
         Layout.fillWidth: true
-        heading:          qsTr("RTK 差分（NTRIP）")
+        heading:          qsTr("RTK / NTRIP")
         visible:          _ntrip.visible
 
         FactCheckBoxSlider {
             Layout.fillWidth: true
-            text:             qsTr("启用 NTRIP/RTK 差分连接")
+            text:             qsTr("Enable NTRIP/RTK")
             fact:             _enabled
             visible:          _enabled.visible
         }
@@ -68,13 +68,13 @@ SettingsPage {
             Layout.fillWidth: true
             Layout.minimumHeight: 30
             wrapMode: Text.WordWrap
-            text: qsTr("连接状态：%1").arg(_statusTextCN())
+            text: qsTr("Connection status: %1").arg(_statusTextCN())
             color: _statusColor()
         }
 
         LabelledFactTextField {
             Layout.fillWidth: true
-            label:            qsTr("服务器地址")
+            label:            qsTr("Server Address")
             fact:             _ntrip.ntripServerHostAddress
             visible:          _ntrip.ntripServerHostAddress.visible
             textFieldPreferredWidth: ScreenTools.defaultFontPixelWidth * 60
@@ -82,7 +82,7 @@ SettingsPage {
 
         LabelledFactTextField {
             Layout.fillWidth: true
-            label:            qsTr("端口")
+            label:            qsTr("Port")
             fact:             _ntrip.ntripServerPort
             visible:          _ntrip.ntripServerPort.visible
             textFieldPreferredWidth: ScreenTools.defaultFontPixelWidth * 20
@@ -90,7 +90,7 @@ SettingsPage {
 
         LabelledFactTextField {
             Layout.fillWidth: true
-            label:            qsTr("用户名")
+            label:            qsTr("Username")
             fact:             _ntrip.ntripUsername
             visible:          _ntrip.ntripUsername.visible
             textFieldPreferredWidth: ScreenTools.defaultFontPixelWidth * 60
@@ -98,7 +98,7 @@ SettingsPage {
 
         LabelledFactTextField {
             Layout.fillWidth: true
-            label:            qsTr("密码")
+            label:            qsTr("Password")
             fact:             _ntrip.ntripPassword
             visible:          _ntrip.ntripPassword.visible
             textField.echoMode: TextInput.Password
@@ -107,7 +107,7 @@ SettingsPage {
 
         LabelledFactTextField {
             Layout.fillWidth: true
-            label:            qsTr("挂载点（Mountpoint）")
+            label:            qsTr("Mountpoint")
             fact:             _ntrip.ntripMountpoint
             visible:          _ntrip.ntripMountpoint.visible
             textFieldPreferredWidth: ScreenTools.defaultFontPixelWidth * 40
@@ -116,7 +116,7 @@ SettingsPage {
         // 白名单字段不同项目含义不一：有的是 IP 白名单，有的是“只允许列表”
         LabelledFactTextField {
             Layout.fillWidth: true
-            label:            qsTr("白名单（IP/设备）")
+            label:            qsTr("Whitelist (IP/Device)")
             fact:             _ntrip.ntripWhitelist
             visible:          _ntrip.ntripWhitelist.visible
             textFieldPreferredWidth: ScreenTools.defaultFontPixelWidth * 40
@@ -125,7 +125,7 @@ SettingsPage {
         // 你原来 disabled 了，这里保留：不可用但展示
         FactCheckBoxSlider {
             Layout.fillWidth: true
-            text:             qsTr("使用 SPARTN（暂不支持）")
+            text:             qsTr("Use SPARTN (not supported yet)")
             fact:             _ntrip.ntripUseSpartn
             visible:          _ntrip.ntripUseSpartn.visible
             enabled:          false

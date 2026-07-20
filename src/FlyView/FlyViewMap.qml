@@ -9,6 +9,7 @@ import QGroundControl
 import QGroundControl.Controls
 import QGroundControl.FlyView
 import QGroundControl.FlightMap
+import QGroundControl.WaterQualityView
 
 FlightMap {
     id:                         _root
@@ -354,6 +355,88 @@ FlightMap {
             z:              QGroundControl.zOrderTopMost
         }
     }
+
+    // Water quality sample points: each WS frame is anchored to the active vehicle's position
+    // at the moment it arrived. Hover a dot to reveal the readings for that sample.
+    // The sample is recorded unconditionally (even with no GPS); only the map dot is hidden
+    // when its captured coordinate is invalid. See WaterQualityManager::updateVehicleCoordinate.
+    property int _activeVehicleGpsLock: _activeVehicle ? _activeVehicle.gps.lock.rawValue : 0
+
+    function _pushVehicleCoordinate() {
+        var hasFix = _activeVehicle
+                    && _activeVehicleGpsLock >= 3
+                    && _activeVehicleCoordinate.isValid
+        WaterQualityManager.updateVehicleCoordinate(hasFix ? _activeVehicleCoordinate : QtPositioning.coordinate())
+    }
+
+    Connections {
+        target: _root
+        function on_ActiveVehicleCoordinateChanged() { _pushVehicleCoordinate() }
+        function on_ActiveVehicleGpsLockChanged()    { _pushVehicleCoordinate() }
+    }
+    Connections {
+        target: QGroundControl.multiVehicleManager
+        function onActiveVehicleChanged() { _pushVehicleCoordinate() }
+    }
+
+    MapItemView {
+        model: WaterQualityManager.samplePoints
+
+        delegate: MapQuickItem {
+            coordinate:     object.coordinate
+            z:              QGroundControl.zOrderTopMost
+            visible:        object.coordinate.isValid
+            anchorPoint.x:  sourceItem.width / 2
+            anchorPoint.y:  sourceItem.height / 2
+
+            sourceItem: Item {
+                id: sampleDot
+                width:  dot.width
+                height: dot.height
+
+                Rectangle {
+                    id: dot
+                    width:  14
+                    height: 14
+                    radius: width / 2
+                    color:  "#00A3E0"
+                    border.color: "white"
+                    border.width: 1
+                }
+
+                MouseArea {
+                    id: dotMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    acceptedButtons: Qt.NoButton
+                    onContainsMouseChanged: bubble.visible = containsMouse
+                }
+
+                Rectangle {
+                    id: bubble
+                    visible: false
+                    width:  bubbleText.implicitWidth  + 16
+                    height: bubbleText.implicitHeight + 12
+                    radius: 6
+                    color:  "#E6000000"
+                    border.color: "white"
+                    border.width: 1
+                    anchors.bottom: dot.top
+                    anchors.horizontalCenter: dot.horizontalCenter
+                    anchors.bottomMargin: 6
+
+                    Text {
+                        id: bubbleText
+                        anchors.centerIn: parent
+                        color: "white"
+                        font.pointSize: ScreenTools.smallFontPointSize
+                        text: qsTr("t=%1s\n%2").arg(object.timestamp.toFixed(1)).arg(object.summary)
+                    }
+                }
+            }
+        }
+    }
+
 
     // GoTo Location forward flight circle visuals
     QGCMapCircleVisuals {

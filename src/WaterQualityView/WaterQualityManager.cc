@@ -1,4 +1,5 @@
 #include "WaterQualityManager.h"
+#include "QmlObjectListModel.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -19,7 +20,7 @@ WaterQualityManager* WaterQualityManager::instance() {
     return _instance;
 }
 
-WaterQualityManager::WaterQualityManager(QObject* parent) : QObject(parent) {
+WaterQualityManager::WaterQualityManager(QObject* parent) : QObject(parent), _samplePoints(new QmlObjectListModel(this)) {
     qCDebug(WaterQualityManagerLog) << "WaterQualityManager Created";
     connect(&_socket, &QWebSocket::connected, this, &WaterQualityManager::_onConnected);
     connect(&_socket, &QWebSocket::textMessageReceived, this, &WaterQualityManager::_onTextMessageReceived);
@@ -60,10 +61,15 @@ void WaterQualityManager::clearData() {
     _visibleMap.clear();
     _sensorList.clear();
     _startTime = 0;
-    
+
     _yMin = 0;
     _yMax = 10;
-    
+
+    _lastVehicleCoordinate = QGeoCoordinate();
+
+    _samplePoints->clearAndDeleteContents();
+    emit samplePointsChanged();
+
     emit sensorListChanged();
     emit axisRangeChanged();
 }
@@ -108,7 +114,8 @@ void WaterQualityManager::_onTextMessageReceived(const QString& message) {
     
     QJsonArray data = obj["data"].toArray();
     bool rangeUpdated = false;
-    
+    QStringList summaryParts;
+
     for (const auto& itemRef : data) {
         QJsonObject item = itemRef.toObject();
         QString name = item["name"].toString();
@@ -137,8 +144,13 @@ void WaterQualityManager::_onTextMessageReceived(const QString& message) {
         if (value > _maxMap[name]) { _maxMap[name] = value; if (_visibleMap.value(name, true)) rangeUpdated = true; }
         
         emit newDataPoint(name, t, value);
+        summaryParts.append(QString("%1=%2").arg(name).arg(value, 0, 'f', 2));
     }
-    
+
+    // Every WS frame is recorded as a sample point. Its coordinate may be invalid
+    // (no GPS yet / GPS lost); the map layer hides such points individually.
+    _addSamplePoint(summaryParts.join("  "), t);
+
     if (rangeUpdated) {
         _recalculateRange();
     }
@@ -174,4 +186,23 @@ void WaterQualityManager::_recalculateRange() {
         _yMax = gMax;
         emit axisRangeChanged();
     }
+}
+
+void WaterQualityManager::updateVehicleCoordinate(const QGeoCoordinate& coordinate) {
+    _lastVehicleCoordinate = coordinate;
+}
+
+void WaterQualityManager::_addSamplePoint(const QString& summary, double t) {
+    if (!_samplePoints) return;
+
+    auto* point = new WaterQualitySamplePoint(_lastVehicleCoordinate, summary, t);
+    _samplePoints->append(point);
+
+    const int kMaxPoints = 5000;
+    while (_samplePoints->count() > kMaxPoints) {
+        QObject* removed = _samplePoints->removeAt(0);
+        if (removed) removed->deleteLater();
+    }
+
+    emit samplePointsChanged();
 }
